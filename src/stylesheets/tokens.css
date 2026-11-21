@@ -5,6 +5,8 @@
 :root {
   /* Optics overrides */
   --op-font-family: 'Space Grotesk', sans-serif;
+  --op-color-background: #fcf7e8; /* page surface = Figma beige */
+  --op-color-on-background: #171717;
 
   /* Color — Figma: text, text-alt, neutral, beige */
   --pr-color-text: #171717;

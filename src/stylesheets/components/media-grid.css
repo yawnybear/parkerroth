@@ -1,0 +1,58 @@
+/*
+  Grid of project images.
+  Figma: photo page gallery (4-up squares), detail page image rows (3-up squares / 16:9).
+*/
+.media-grid {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  gap: 3.2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+
+  .media-grid__item {
+    display: block;
+    overflow: hidden;
+    border-radius: var(--pr-radius-m);
+    aspect-ratio: 1;
+    background-color: var(--pr-color-neutral);
+    inline-size: 100%;
+    object-fit: cover;
+  }
+
+  .media-grid__link {
+    display: block;
+    border-radius: var(--pr-radius-m);
+
+    &:focus-visible {
+      outline: var(--op-border-width-large) solid var(--pr-color-red);
+      outline-offset: var(--op-space-3x-small);
+    }
+  }
+
+  &.media-grid--gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  &.media-grid--widescreen {
+    .media-grid__item {
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  /* Placed on a neutral surface (e.g. a project detail body) */
+  &.media-grid--inset {
+    .media-grid__item {
+      background-color: var(--pr-color-beige);
+    }
+  }
+
+  @media (width <= 768px) {
+    gap: var(--op-space-medium);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    &.media-grid--gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}

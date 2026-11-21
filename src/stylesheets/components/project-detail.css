@@ -1,0 +1,69 @@
+/*
+  Project / photo detail view.
+  Figma: detail "main" frames — header, neutral body with hero, copy blocks and image grids.
+*/
+.project-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--op-space-large);
+
+  .project-detail__body {
+    display: flex;
+    flex-direction: column;
+    padding: var(--op-space-3x-large);
+    border-radius: var(--pr-radius-xl);
+    background-color: var(--pr-color-neutral);
+    gap: var(--op-space-large);
+  }
+
+  .project-detail__hero {
+    display: block;
+    border-radius: var(--pr-radius-m);
+    aspect-ratio: 1082 / 400;
+    background-color: var(--pr-color-beige);
+    inline-size: 100%;
+    object-fit: cover;
+
+    &.project-detail__hero--widescreen {
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  .project-detail__copy {
+    display: flex;
+    flex-direction: column;
+    padding: var(--op-space-large);
+    gap: var(--op-space-x-small);
+  }
+
+  .project-detail__title {
+    margin: 0;
+    color: var(--pr-color-text);
+    font-size: var(--op-font-2x-large);
+    font-weight: var(--op-font-weight-semi-bold);
+    line-height: normal;
+    text-transform: uppercase;
+  }
+
+  .project-detail__text {
+    margin: 0;
+    color: var(--pr-color-text-alt);
+    font-size: var(--op-font-medium);
+    line-height: normal;
+  }
+
+  .project-detail__gallery {
+    padding-inline: var(--op-space-large);
+  }
+
+  @media (width <= 768px) {
+    .project-detail__body {
+      padding: var(--op-space-medium);
+    }
+
+    .project-detail__copy,
+    .project-detail__gallery {
+      padding-inline: 0;
+    }
+  }
+}

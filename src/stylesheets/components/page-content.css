@@ -1,0 +1,23 @@
+/*
+  Main content column that sits next to the side panel (inside Optics' .app-body).
+  Figma: screen > "main" (listing pages) and the standalone "main" frames (detail pages).
+*/
+.page-content {
+  display: flex;
+  flex-direction: column;
+  padding: var(--op-space-3x-large) 5.6rem var(--op-space-3x-large);
+  gap: var(--op-space-large);
+
+  &.page-content--detail {
+    padding: var(--op-space-3x-large);
+    gap: var(--op-space-3x-large);
+  }
+
+  @media (width <= 768px) {
+    padding: var(--op-space-large);
+
+    &.page-content--detail {
+      padding: var(--op-space-large);
+    }
+  }
+}

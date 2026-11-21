@@ -12,6 +12,20 @@
     block-size: 20rem;
     inline-size: 20rem;
     object-fit: cover;
+
+    /* Brand mark centered on the placeholder surface */
+    &.card__media--logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--op-space-large);
+    }
+  }
+
+  .card__logo {
+    display: block;
+    block-size: auto;
+    max-inline-size: 100%;
   }
 
   .card__details {
@@ -65,6 +79,14 @@
     background-color: var(--pr-color-neutral);
     color: var(--pr-color-text);
     gap: var(--op-space-x-large);
+    inline-size: 57.2rem;
+    max-inline-size: 100%;
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: var(--op-border-width-large) solid var(--pr-color-blue);
+      outline-offset: var(--op-space-3x-small);
+    }
 
     .card__details {
       flex: 1;
@@ -91,6 +113,7 @@
       display: inline-flex;
       flex-direction: column;
       gap: var(--op-space-small);
+      inline-size: auto;
 
       .card__details {
         justify-content: flex-start;

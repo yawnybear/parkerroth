@@ -17,3 +17,9 @@
 @import url('components/nav-item.css');
 @import url('components/brand.css');
 @import url('components/site-footer.css');
+
+/* Page-level blocks */
+@import url('components/page-content.css');
+@import url('components/carousel.css');
+@import url('components/media-grid.css');
+@import url('components/project-detail.css');

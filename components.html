@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parker Roth Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="src/stylesheets/application.css">
+  <link rel="stylesheet" href="src/stylesheets/component-gallery.css">
+</head>
+<body>
+  <div class="component-gallery">
+    <main class="component-gallery__main">
+
+      <section class="component-gallery__section">
+        <h2 class="component-gallery__heading">card--inlay</h2>
+        <article class="card card--inlay">
+          <h3 class="card__title">Project name</h3>
+          <p class="card__description">Description</p>
+        </article>
+      </section>
+
+      <section class="component-gallery__section">
+        <h2 class="component-gallery__heading">card--project / card--project card--stacked</h2>
+        <div class="component-gallery__stack">
+          <article class="card card--project">
+            <div class="card__media"></div>
+            <div class="card__details">
+              <div class="card__heading">
+                <h3 class="card__title">Name</h3>
+                <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+              <ul class="card__tags">
+                <li class="tag">Tag 1</li>
+                <li class="tag">Tag 1</li>
+                <li class="tag">Tag 1</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card card--project card--stacked">
+            <div class="card__media"></div>
+            <div class="card__details">
+              <div class="card__heading">
+                <h3 class="card__title">Name</h3>
+              </div>
+              <ul class="card__tags">
+                <li class="tag">Tag 1</li>
+                <li class="tag">Tag 1</li>
+                <li class="tag">Tag 1</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="component-gallery__row">
+        <section class="component-gallery__section">
+          <h2 class="component-gallery__heading">nav-item</h2>
+          <nav class="component-gallery__nav" aria-label="Nav item states">
+            <a class="nav-item nav-item--design" href="#design">
+              <span class="media-icon media-icon--design" aria-hidden="true"><img class="media-icon__image" src="assets/icons/design.svg" width="33.0337" height="26.4886" alt=""></span>
+              <span class="nav-item__label">Design</span>
+            </a>
+            <a class="nav-item nav-item--design component-gallery__hover-preview" href="#design">
+              <span class="media-icon media-icon--design" aria-hidden="true"><img class="media-icon__image" src="assets/icons/design.svg" width="33.0337" height="26.4886" alt=""></span>
+              <span class="nav-item__label">Design</span>
+            </a>
+            <a class="nav-item nav-item--design nav-item--active" href="#design" aria-current="page">
+              <span class="media-icon media-icon--design" aria-hidden="true"><img class="media-icon__image" src="assets/icons/design.svg" width="33.0337" height="26.4886" alt=""></span>
+              <span class="nav-item__label">Design</span>
+            </a>
+          </nav>
+        </section>
+
+        <section class="component-gallery__section">
+          <h2 class="component-gallery__heading">btn</h2>
+          <div class="component-gallery__stack">
+            <button class="btn" type="button" disabled aria-label="Previous">&lt;</button>
+            <button class="btn" type="button" aria-label="Previous">&lt;</button>
+            <button class="btn btn--active" type="button" aria-label="Previous">&lt;</button>
+          </div>
+        </section>
+
+        <section class="component-gallery__section">
+          <h2 class="component-gallery__heading">tag</h2>
+          <div class="component-gallery__stack">
+            <span class="tag">Tag 1</span>
+            <span class="tag tag--medium">Tag 1</span>
+          </div>
+        </section>
+
+        <section class="component-gallery__section">
+          <h2 class="component-gallery__heading">breadcrumbs</h2>
+          <div class="component-gallery__stack">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a class="breadcrumbs__link" href="#first">First</a>
+            </nav>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a class="breadcrumbs__link" href="#first">First</a>
+              <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+              <span class="breadcrumbs__text" aria-current="page">Second</span>
+            </nav>
+          </div>
+        </section>
+
+        <section class="component-gallery__section">
+          <h2 class="component-gallery__heading">brand</h2>
+          <div class="component-gallery__stack">
+            <a class="brand" href="#home">
+              <span class="brand__line">Parker</span>
+              <span class="brand__line">Douglas</span>
+              <span class="brand__line">Roth</span>
+            </a>
+            <a class="brand brand--initials" href="#home" aria-label="Parker Douglas Roth">PdR</a>
+          </div>
+        </section>
+      </div>
+
+      <section class="component-gallery__section">
+        <h2 class="component-gallery__heading">content-header</h2>
+        <header class="content-header">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a class="breadcrumbs__link" href="#first">First</a>
+          </nav>
+          <div class="content-header__aside">
+            <button class="btn" type="button" disabled aria-label="Previous">&lt;</button>
+            <button class="btn" type="button" disabled aria-label="Next">&gt;</button>
+          </div>
+        </header>
+        <header class="content-header">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a class="breadcrumbs__link" href="#first">First</a>
+            <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+            <span class="breadcrumbs__text" aria-current="page">Second</span>
+          </nav>
+          <div class="content-header__aside">
+            <button class="btn" type="button" disabled aria-label="Close">X</button>
+          </div>
+        </header>
+      </section>
+
+      <section class="component-gallery__section">
+        <h2 class="component-gallery__heading">media-icon</h2>
+        <div class="component-gallery__row">
+          <span class="media-icon media-icon--design" aria-hidden="true"><img class="media-icon__image" src="assets/icons/design.svg" width="33.0337" height="26.4886" alt=""></span>
+          <span class="media-icon media-icon--video" aria-hidden="true"><img class="media-icon__image" src="assets/icons/video.svg" width="38.8075" height="25.9164" alt=""></span>
+          <span class="media-icon media-icon--photo" aria-hidden="true"><img class="media-icon__image" src="assets/icons/photo.svg" width="39.9305" height="26.3003" alt=""></span>
+          <span class="media-icon media-icon--story" aria-hidden="true"><img class="media-icon__image" src="assets/icons/story.svg" width="28.0001" height="29.1198" alt=""></span>
+        </div>
+      </section>
+
+      <section class="component-gallery__section">
+        <h2 class="component-gallery__heading">site-footer</h2>
+        <footer class="site-footer">
+          <a class="brand brand--initials" href="#home" aria-label="Parker Douglas Roth">PdR</a>
+          <div class="site-footer__credits">
+            <p class="site-footer__credit">Designed by a human</p>
+            <p class="site-footer__credit">In Greenville, South Carolina</p>
+            <p class="site-footer__credit site-footer__credit--muted">Copyright, 2026</p>
+          </div>
+        </footer>
+      </section>
+    </main>
+
+    <div class="component-gallery__panel-frame">
+      <aside class="side-panel">
+        <div class="side-panel__body">
+          <a class="brand" href="#home">
+            <span class="brand__line">Parker</span>
+            <span class="brand__line">Douglas</span>
+            <span class="brand__line">Roth</span>
+          </a>
+          <p class="side-panel__intro">Crafting thoughtful design, documenting authentic moments, and sharing stories in everything I do.</p>
+        </div>
+        <nav class="side-panel__footer" aria-label="Primary">
+          <a class="nav-item nav-item--story nav-item--active" href="#overview" aria-current="page">
+            <span class="media-icon media-icon--story" aria-hidden="true"><img class="media-icon__image" src="assets/icons/story.svg" width="28.0001" height="29.1198" alt=""></span>
+            <span class="nav-item__label">Overview</span>
+          </a>
+          <a class="nav-item nav-item--design" href="#design">
+            <span class="media-icon media-icon--design" aria-hidden="true"><img class="media-icon__image" src="assets/icons/design.svg" width="33.0337" height="26.4886" alt=""></span>
+            <span class="nav-item__label">Design</span>
+          </a>
+          <a class="nav-item nav-item--video" href="#video">
+            <span class="media-icon media-icon--video" aria-hidden="true"><img class="media-icon__image" src="assets/icons/video.svg" width="38.8075" height="25.9164" alt=""></span>
+            <span class="nav-item__label">Video</span>
+          </a>
+          <a class="nav-item nav-item--photo" href="#photo">
+            <span class="media-icon media-icon--photo" aria-hidden="true"><img class="media-icon__image" src="assets/icons/photo.svg" width="39.9305" height="26.3003" alt=""></span>
+            <span class="nav-item__label">Photo</span>
+          </a>
+        </nav>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>

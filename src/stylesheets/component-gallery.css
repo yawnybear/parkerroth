@@ -44,10 +44,6 @@
     gap: var(--op-space-large);
   }
 
-  .component-gallery__project-card {
-    max-inline-size: 57.2rem;
-  }
-
   .component-gallery__nav {
     display: flex;
     flex-direction: column;
