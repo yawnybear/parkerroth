@@ -3,6 +3,7 @@
 
 /* Project tokens + Optics token overrides */
 @import url('tokens.css');
+@import url('base.css');
 
 /* Optics components, customized through their public API */
 @import url('components/card.css');
