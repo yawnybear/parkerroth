@@ -1,22 +1,33 @@
 /*
-  Main content column that sits next to the side panel (inside Optics' .app-body).
+  Content column beside the side panel (inside Optics' .app-body): the page's <main>
+  followed by the site footer.
   Figma: screen > "main" (listing pages) and the standalone "main" frames (detail pages).
 
-  Listing and detail pages share the same padding so the header/breadcrumb stays
-  in place when navigating between them (Figma's detail frames use 40px inline
-  padding; that is intentionally aligned to the listing's 56px here).
+  - Listing and detail pages share the same padding so the header/breadcrumb stays
+    in place when navigating between them (Figma's detail frames use 40px inline
+    padding; that is intentionally aligned to the listing's 56px here).
+  - The column fills at least the viewport height so the footer sits at the bottom
+    of short pages and follows the content on long ones.
 */
 .page-content {
   --_page-content-padding-block: var(--op-space-3x-large);
   --_page-content-padding-inline: var(--pr-page-gutter);
 
   display: flex;
+  flex: 1 0 auto; /* fill .app-body's height */
   flex-direction: column;
   padding: var(--_page-content-padding-block) var(--_page-content-padding-inline);
-  gap: var(--op-space-large);
+  gap: var(--op-space-3x-large);
 
-  &.page-content--detail {
-    gap: var(--op-space-3x-large);
+  .page-content__main {
+    display: flex;
+    min-inline-size: 0;
+    flex-direction: column;
+    gap: var(--op-space-large);
+  }
+
+  .page-content__footer {
+    margin-block-start: auto;
   }
 
   @media (width <= 768px) {

@@ -27,4 +27,14 @@
       opacity: 0.6;
     }
   }
+
+  /* Stack and let credits wrap rather than overflow narrow columns */
+  @media (width <= 768px) {
+    flex-direction: column;
+
+    .site-footer__credits {
+      gap: var(--op-space-3x-small);
+      white-space: normal;
+    }
+  }
 }
