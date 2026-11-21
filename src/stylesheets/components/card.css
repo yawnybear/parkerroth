@@ -1,0 +1,126 @@
+/*
+  Extends the Optics `.card` block.
+  Figma: "card" (direction=inline|block) → .card--project (+ .card--stacked)
+         "card--inlay"                    → .card--inlay
+*/
+.card {
+  .card__media {
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: var(--pr-radius-m);
+    background-color: var(--pr-color-beige);
+    block-size: 20rem;
+    inline-size: 20rem;
+    object-fit: cover;
+  }
+
+  .card__details {
+    display: flex;
+    min-inline-size: 0;
+    flex-direction: column;
+  }
+
+  .card__heading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--op-space-x-small);
+  }
+
+  .card__title {
+    margin: 0;
+    color: var(--pr-color-text);
+    font-size: var(--op-font-medium);
+    font-weight: var(--op-font-weight-semi-bold);
+    line-height: normal;
+    text-transform: uppercase;
+  }
+
+  .card__description {
+    margin: 0;
+    color: var(--pr-color-text-alt);
+    font-size: var(--op-font-medium);
+    font-weight: var(--op-font-weight-normal);
+    line-height: normal;
+  }
+
+  .card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
+    gap: var(--op-space-2x-small);
+    list-style: none;
+  }
+
+  /* Project card — horizontal (Figma direction=inline) by default */
+  &.card--project {
+    --_op-card-padding: var(--op-space-large);
+    --_op-card-radius: var(--pr-radius-xl);
+    --_op-card-box-shadow: none;
+
+    display: flex;
+    align-items: stretch;
+    padding: var(--_op-card-padding);
+    background-color: var(--pr-color-neutral);
+    color: var(--pr-color-text);
+    gap: var(--op-space-x-large);
+
+    .card__details {
+      flex: 1;
+      justify-content: space-between;
+      padding-block-start: var(--op-space-medium);
+      gap: var(--op-space-small);
+    }
+
+    .card__title {
+      font-size: var(--op-font-2x-large);
+      line-height: 1.1;
+    }
+
+    .card__description {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+    }
+
+    /* Vertical project card (Figma direction=block) */
+    &.card--stacked {
+      display: inline-flex;
+      flex-direction: column;
+      gap: var(--op-space-small);
+
+      .card__details {
+        justify-content: flex-start;
+        padding-block-start: 0;
+        gap: var(--op-space-small);
+      }
+
+      .card__heading {
+        padding-inline: var(--op-space-x-small);
+      }
+
+      .card__title {
+        font-size: var(--op-font-medium);
+        line-height: normal;
+      }
+    }
+  }
+
+  /* Compact project summary row */
+  &.card--inlay {
+    --_op-card-radius: var(--pr-radius-m);
+    --_op-card-box-shadow: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--op-space-medium) var(--op-space-large);
+    background-color: var(--pr-color-neutral);
+    color: var(--pr-color-text);
+    gap: var(--op-space-x-small);
+    opacity: 0.9;
+  }
+}

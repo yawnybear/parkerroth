@@ -1,0 +1,21 @@
+{
+  "name": "parkerroth",
+  "version": "1.0.0",
+  "description": "Parker Roth site components (BEM + Optics)",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yawnybear/parkerroth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yawnybear/parkerroth/issues"
+  },
+  "homepage": "https://github.com/yawnybear/parkerroth#readme",
+  "dependencies": {
+    "@rolemodel/optics": "^2.6.1"
+  },
+  "private": true
+}

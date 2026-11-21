@@ -1,0 +1,37 @@
+/*
+  Overrides the Optics `.btn` base through its public API.
+  Figma: "button" state=default  → .btn
+                  state=inactive → .btn:disabled / .btn--disabled (Optics already applies 0.4 opacity)
+                  state=active   → .btn--active
+*/
+.btn {
+  --_op-btn-height-large: 4rem;
+  --_op-btn-font-large: var(--op-font-medium);
+  --_op-btn-padding-large: var(--op-space-2x-small) var(--op-space-small);
+
+  border-radius: var(--pr-radius-m);
+  background-color: var(--pr-color-neutral);
+  box-shadow: none;
+  color: var(--pr-color-text);
+  line-height: normal;
+  min-inline-size: 4rem;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: var(--pr-color-beige);
+    box-shadow: none;
+    color: var(--pr-color-text);
+  }
+
+  &:focus-visible {
+    background-color: var(--pr-color-neutral);
+    box-shadow: 0 0 0 var(--op-border-width-large) var(--pr-color-blue);
+    color: var(--pr-color-text);
+  }
+
+  &.btn--active {
+    background-color: transparent;
+    box-shadow: inset var(--op-border-all) var(--pr-color-neutral);
+    color: var(--pr-color-text);
+  }
+}

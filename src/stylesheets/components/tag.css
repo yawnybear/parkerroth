@@ -1,0 +1,24 @@
+/*
+  Overrides the Optics `.tag` base: outlined, uppercase label.
+  Figma: "tag" size=Default → .tag, size=medium → .tag--medium
+*/
+.tag {
+  padding: var(--op-space-x-small);
+  border: var(--op-border-width) solid var(--pr-color-beige);
+  border-radius: var(--pr-radius-m);
+  background-color: transparent;
+  block-size: 3.6rem;
+  color: var(--pr-color-text);
+  font-size: var(--op-font-small);
+  font-weight: var(--op-font-weight-medium);
+  letter-spacing: normal;
+  line-height: normal;
+  min-inline-size: 3.6rem;
+  text-transform: uppercase;
+
+  &.tag--medium {
+    border-color: var(--pr-color-neutral);
+    block-size: 4rem;
+    min-inline-size: 4rem;
+  }
+}

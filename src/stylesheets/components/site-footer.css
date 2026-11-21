@@ -1,0 +1,30 @@
+/*
+  Global page footer.
+  Figma: "footer" — initials brand + credits column.
+*/
+.site-footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--op-space-large);
+
+  .site-footer__credits {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    justify-content: space-between;
+    white-space: nowrap;
+  }
+
+  .site-footer__credit {
+    margin: 0;
+    color: var(--pr-color-text-alt);
+    font-size: var(--op-font-x-small);
+    line-height: normal;
+    text-transform: uppercase;
+
+    &.site-footer__credit--muted {
+      opacity: 0.6;
+    }
+  }
+}

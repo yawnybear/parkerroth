@@ -1,0 +1,31 @@
+/*
+  Overrides the Optics `.breadcrumbs` base.
+  Figma: "breadcrumb" step=first|second.
+  Adds .breadcrumbs__separator (Optics has no separator element).
+*/
+.breadcrumbs {
+  --_op-breadcrumbs-font-size-small: var(--op-font-medium);
+  --_op-breadcrumbs-font-size-large: var(--op-font-medium);
+
+  align-items: center;
+  gap: var(--op-space-2x-small);
+  line-height: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  .breadcrumbs__link {
+    color: var(--pr-color-text-alt);
+    font-weight: var(--op-font-weight-medium);
+  }
+
+  .breadcrumbs__separator {
+    color: var(--pr-color-text-alt);
+    font-size: var(--__op-breadcrumbs-font-size);
+    font-weight: var(--op-font-weight-medium);
+  }
+
+  .breadcrumbs__text {
+    color: var(--pr-color-text);
+    font-weight: var(--op-font-weight-semi-bold);
+  }
+}

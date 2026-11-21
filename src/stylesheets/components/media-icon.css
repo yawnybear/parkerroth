@@ -1,0 +1,46 @@
+/*
+  Media-type illustration icon (Optics `.icon` is font-based, so this is a new block).
+  Figma: "icons" Type=Design|Video|Photo|Story.
+  Each SVG keeps its intrinsic width/height; modifiers place it exactly as in Figma.
+*/
+.media-icon {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  block-size: 40px;
+  inline-size: 40px;
+
+  .media-icon__image {
+    position: absolute;
+    display: block;
+    max-inline-size: none;
+  }
+
+  &.media-icon--design {
+    .media-icon__image {
+      inset-block-start: 8.32px;
+      inset-inline-start: 3.48px;
+    }
+  }
+
+  &.media-icon--video {
+    .media-icon__image {
+      inset-block-start: 7.11px;
+      inset-inline-start: 0.78px;
+    }
+  }
+
+  &.media-icon--photo {
+    .media-icon__image {
+      inset-block-start: 5.99px;
+      inset-inline-start: 0.09px;
+    }
+  }
+
+  &.media-icon--story {
+    .media-icon__image {
+      inset-block-start: 5.26px;
+      inset-inline-start: 5.98px;
+    }
+  }
+}

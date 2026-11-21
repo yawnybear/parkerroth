@@ -1,0 +1,71 @@
+/* Demo-only layout for index.html — not part of the component library. */
+.component-gallery {
+  display: grid;
+  padding: var(--op-space-3x-large);
+  background-color: #444;
+  gap: var(--op-space-3x-large);
+  grid-template-columns: minmax(0, 1fr) 27rem;
+  min-block-size: 100%;
+
+  .component-gallery__main {
+    display: flex;
+    min-inline-size: 0;
+    flex-direction: column;
+    gap: var(--op-space-3x-large);
+  }
+
+  .component-gallery__section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--op-space-medium);
+  }
+
+  .component-gallery__heading {
+    margin: 0;
+    color: var(--pr-color-neutral);
+    font-size: var(--op-font-x-small);
+    font-weight: var(--op-font-weight-medium);
+    letter-spacing: 0.08em;
+    opacity: 0.6;
+    text-transform: uppercase;
+  }
+
+  .component-gallery__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--op-space-x-large);
+  }
+
+  .component-gallery__stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--op-space-large);
+  }
+
+  .component-gallery__project-card {
+    max-inline-size: 57.2rem;
+  }
+
+  .component-gallery__nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--op-space-large);
+    inline-size: 20.2rem;
+  }
+
+  .component-gallery__panel-frame {
+    block-size: 98.2rem;
+  }
+
+  /* Pins the Figma "hover" state for preview */
+  .component-gallery__hover-preview {
+    background-color: var(--pr-color-neutral);
+  }
+
+  @media (width <= 768px) {
+    padding: var(--op-space-medium);
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

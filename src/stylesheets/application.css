@@ -1,0 +1,19 @@
+/* Optics core (no icon font — this project uses its own SVG media icons) */
+@import url('../../node_modules/@rolemodel/optics/dist/css/optics+no_icons.css');
+
+/* Project tokens + Optics token overrides */
+@import url('tokens.css');
+
+/* Optics components, customized through their public API */
+@import url('components/card.css');
+@import url('components/tag.css');
+@import url('components/button.css');
+@import url('components/breadcrumbs.css');
+@import url('components/content-header.css');
+@import url('components/side-panel.css');
+
+/* Project-specific blocks (no Optics equivalent) */
+@import url('components/media-icon.css');
+@import url('components/nav-item.css');
+@import url('components/brand.css');
+@import url('components/site-footer.css');

@@ -1,0 +1,56 @@
+/*
+  Primary navigation link with a media icon.
+  Figma: "nav" state=default|hover|active.
+  The active outline takes the accent color of the item's media category.
+*/
+.nav-item {
+  --_nav-item-accent-color: var(--pr-color-blue);
+
+  display: flex;
+  align-items: center;
+  padding: var(--op-space-x-small) var(--op-space-small);
+  border-radius: var(--pr-radius-m);
+  color: var(--pr-color-text);
+  font-size: var(--op-font-small);
+  font-weight: var(--op-font-weight-medium);
+  gap: var(--op-space-x-small);
+  line-height: normal;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: var(--op-transition-input);
+  white-space: nowrap;
+
+  &:hover {
+    background-color: var(--pr-color-neutral);
+  }
+
+  &:focus-visible {
+    outline: var(--op-border-width-large) solid var(--_nav-item-accent-color);
+    outline-offset: 0;
+  }
+
+  .nav-item__label {
+    min-inline-size: 0;
+  }
+
+  /* Inset shadow = Figma's inside stroke, so the outline doesn't change the item's size */
+  &.nav-item--active {
+    box-shadow: inset var(--op-border-all) var(--_nav-item-accent-color);
+  }
+
+  &.nav-item--design {
+    --_nav-item-accent-color: var(--pr-color-blue);
+  }
+
+  &.nav-item--video {
+    --_nav-item-accent-color: var(--pr-color-orange);
+  }
+
+  &.nav-item--photo {
+    --_nav-item-accent-color: var(--pr-color-red);
+  }
+
+  &.nav-item--story {
+    --_nav-item-accent-color: var(--pr-color-green);
+  }
+}

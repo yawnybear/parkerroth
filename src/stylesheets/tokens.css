@@ -1,0 +1,24 @@
+/*
+  Figma variables (parker-roth / components) mapped to project tokens.
+  Optics' root font-size is 62.5%, so 1rem = 10px.
+*/
+:root {
+  /* Optics overrides */
+  --op-font-family: 'Space Grotesk', sans-serif;
+
+  /* Color — Figma: text, text-alt, neutral, beige */
+  --pr-color-text: #171717;
+  --pr-color-text-alt: #333;
+  --pr-color-neutral: #f0ece0;
+  --pr-color-beige: #fcf7e8;
+
+  /* Category accents — Figma: blue, orange, red, green */
+  --pr-color-blue: #50bfcd;
+  --pr-color-orange: #cea850;
+  --pr-color-red: #cd6950;
+  --pr-color-green: #50cd99;
+
+  /* Radius — Figma border-radius-m (16) maps to Optics; xl (32) has no Optics step */
+  --pr-radius-m: var(--op-radius-2x-large);
+  --pr-radius-xl: 3.2rem;
+}

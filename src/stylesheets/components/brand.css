@@ -1,0 +1,25 @@
+/*
+  Site wordmark.
+  Figma: "brand" version=full → .brand, version=initial → .brand--initials
+*/
+.brand {
+  /* Must be a block container (not flex) so text-box trimming applies */
+  display: inline-block;
+  color: var(--pr-color-text);
+  font-size: 4rem;
+  font-weight: var(--op-font-weight-bold);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-box: trim-both cap alphabetic;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  .brand__line {
+    display: block;
+  }
+
+  &.brand--initials {
+    font-size: 6rem;
+  }
+}
