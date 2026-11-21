@@ -1,23 +1,26 @@
 /*
   Main content column that sits next to the side panel (inside Optics' .app-body).
   Figma: screen > "main" (listing pages) and the standalone "main" frames (detail pages).
+
+  Listing and detail pages share the same padding so the header/breadcrumb stays
+  in place when navigating between them (Figma's detail frames use 40px inline
+  padding; that is intentionally aligned to the listing's 56px here).
 */
 .page-content {
+  --_page-content-padding-block: var(--op-space-3x-large);
+  --_page-content-padding-inline: 5.6rem;
+
   display: flex;
   flex-direction: column;
-  padding: var(--op-space-3x-large) 5.6rem var(--op-space-3x-large);
+  padding: var(--_page-content-padding-block) var(--_page-content-padding-inline);
   gap: var(--op-space-large);
 
   &.page-content--detail {
-    padding: var(--op-space-3x-large);
     gap: var(--op-space-3x-large);
   }
 
   @media (width <= 768px) {
-    padding: var(--op-space-large);
-
-    &.page-content--detail {
-      padding: var(--op-space-large);
-    }
+    --_page-content-padding-block: var(--op-space-large);
+    --_page-content-padding-inline: var(--op-space-large);
   }
 }
