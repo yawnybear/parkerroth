@@ -6,28 +6,25 @@
   - Listing and detail pages share the same padding so the header/breadcrumb stays
     in place when navigating between them (Figma's detail frames use 40px inline
     padding; that is intentionally aligned to the listing's 56px here).
-  - The column fills at least the viewport height so the footer sits at the bottom
-    of short pages and follows the content on long ones.
+  - <main> is at least as tall as the viewport (minus the top padding), so the
+    footer always starts below the fold — even on short pages you scroll to reach it.
+    100vh matches the height Optics gives .app-with-sidebar (the scroll container).
 */
 .page-content {
   --_page-content-padding-block: var(--op-space-3x-large);
   --_page-content-padding-inline: var(--pr-page-gutter);
 
   display: flex;
-  flex: 1 0 auto; /* fill .app-body's height */
   flex-direction: column;
   padding: var(--_page-content-padding-block) var(--_page-content-padding-inline);
   gap: var(--op-space-3x-large);
 
   .page-content__main {
     display: flex;
+    min-block-size: calc(100vh - var(--_page-content-padding-block));
     min-inline-size: 0;
     flex-direction: column;
     gap: var(--op-space-large);
-  }
-
-  .page-content__footer {
-    margin-block-start: auto;
   }
 
   @media (width <= 768px) {
