@@ -42,6 +42,15 @@
   */
   &.carousel--full-bleed {
     --_carousel-bleed: var(--pr-page-gutter);
+
+    /*
+      Inner-shadow style fade as cards scroll behind the side panel. A mask (not an
+      inset box-shadow, which paints beneath child content) fades the cards across the
+      start gutter; at rest the first card sits just past it, so it stays fully opaque.
+    */
+    .carousel__track {
+      mask-image: linear-gradient(to right, transparent, #000 var(--_carousel-bleed));
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
