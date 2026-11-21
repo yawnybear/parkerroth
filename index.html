@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Parker Douglas Roth</title>
+  <title>Design — Parker Douglas Roth</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
@@ -22,11 +22,7 @@
         <p class="side-panel__intro">Crafting thoughtful design, documenting authentic moments, and sharing stories in everything I do.</p>
       </div>
       <nav class="side-panel__footer" aria-label="Primary">
-        <a class="nav-item nav-item--story nav-item--active" href="index.html" aria-current="page">
-          <span class="media-icon media-icon--story" aria-hidden="true"><img class="media-icon__image" src="assets/icons/story.svg" width="28.0001" height="29.1198" alt=""></span>
-          <span class="nav-item__label">Overview</span>
-        </a>
-        <a class="nav-item nav-item--design" href="design.html">
+        <a class="nav-item nav-item--design nav-item--active" href="index.html" aria-current="page">
           <span class="media-icon media-icon--design" aria-hidden="true"><img class="media-icon__image" src="assets/icons/design.svg" width="33.0337" height="26.4886" alt=""></span>
           <span class="nav-item__label">Design</span>
         </a>
@@ -42,11 +38,14 @@
     </aside>
     <div class="app-body">
       <main class="page-content">
-        <section class="carousel carousel--bleed-end" data-carousel aria-label="Featured product work">
+        <section class="carousel carousel--bleed-end" data-carousel aria-label="Product">
           <header class="content-header">
+            <nav class="breadcrumbs" aria-label="Section">
+              <a class="breadcrumbs__link" href="index.html">Product</a>
+            </nav>
             <div class="content-header__aside">
-              <button class="btn" type="button" data-carousel-prev aria-label="Previous Featured product work">&lt;</button>
-              <button class="btn" type="button" data-carousel-next aria-label="Next Featured product work">&gt;</button>
+              <button class="btn" type="button" data-carousel-prev aria-label="Previous Product">&lt;</button>
+              <button class="btn" type="button" data-carousel-next aria-label="Next Product">&gt;</button>
             </div>
           </header>
           <ul class="carousel__track" data-carousel-track>
@@ -90,54 +89,14 @@
             </li>
           </ul>
         </section>
-        <section class="carousel carousel--bleed-end" data-carousel aria-label="Featured video work">
+        <section class="carousel carousel--bleed-end" data-carousel aria-label="Brand">
           <header class="content-header">
+            <nav class="breadcrumbs" aria-label="Section">
+              <a class="breadcrumbs__link" href="index.html">Brand</a>
+            </nav>
             <div class="content-header__aside">
-              <button class="btn" type="button" data-carousel-prev aria-label="Previous Featured video work">&lt;</button>
-              <button class="btn" type="button" data-carousel-next aria-label="Next Featured video work">&gt;</button>
-            </div>
-          </header>
-          <ul class="carousel__track" data-carousel-track>
-            <li class="carousel__item">
-              <a class="card card--project" href="project-origin.html">
-                <div class="card__media"></div>
-                <div class="card__details">
-                  <div class="card__heading">
-                    <h3 class="card__title">Origin: Creators of the Carolinas</h3>
-                    <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="carousel__item">
-              <a class="card card--project" href="#">
-                <div class="card__media"></div>
-                <div class="card__details">
-                  <div class="card__heading">
-                    <h3 class="card__title">Rivals Reunited</h3>
-                    <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="carousel__item">
-              <a class="card card--project" href="#">
-                <div class="card__media"></div>
-                <div class="card__details">
-                  <div class="card__heading">
-                    <h3 class="card__title">Rivals Reunited</h3>
-                    <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  </div>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </section>
-        <section class="carousel carousel--bleed-end" data-carousel aria-label="Featured brand work">
-          <header class="content-header">
-            <div class="content-header__aside">
-              <button class="btn" type="button" data-carousel-prev aria-label="Previous Featured brand work">&lt;</button>
-              <button class="btn" type="button" data-carousel-next aria-label="Next Featured brand work">&gt;</button>
+              <button class="btn" type="button" data-carousel-prev aria-label="Previous Brand">&lt;</button>
+              <button class="btn" type="button" data-carousel-next aria-label="Next Brand">&gt;</button>
             </div>
           </header>
           <ul class="carousel__track" data-carousel-track>
