@@ -8,7 +8,7 @@
 */
 .page-content {
   --_page-content-padding-block: var(--op-space-3x-large);
-  --_page-content-padding-inline: 5.6rem;
+  --_page-content-padding-inline: var(--pr-page-gutter);
 
   display: flex;
   flex-direction: column;
@@ -21,6 +21,5 @@
 
   @media (width <= 768px) {
     --_page-content-padding-block: var(--op-space-large);
-    --_page-content-padding-inline: var(--op-space-large);
   }
 }

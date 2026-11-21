@@ -23,4 +23,11 @@
   /* Radius — Figma border-radius-m (16) maps to Optics; xl (32) has no Optics step */
   --pr-radius-m: var(--op-radius-2x-large);
   --pr-radius-xl: 3.2rem;
+
+  /* Horizontal page margin beside the side panel (shared by page-content and full-bleed carousels) */
+  --pr-page-gutter: 5.6rem;
+
+  @media (width <= 768px) {
+    --pr-page-gutter: var(--op-space-large);
+  }
 }

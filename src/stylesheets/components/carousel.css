@@ -14,15 +14,14 @@
   .carousel__track {
     display: flex;
     align-items: flex-start;
-    padding: 0;
-    padding-inline-end: var(--_carousel-bleed);
-    margin: 0;
-    margin-inline-end: calc(var(--_carousel-bleed) * -1);
+    padding: 0 var(--_carousel-bleed);
+    margin: 0 calc(var(--_carousel-bleed) * -1);
     gap: var(--op-space-medium);
     list-style: none;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-behavior: smooth;
+    scroll-padding-inline: var(--_carousel-bleed);
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
 
@@ -36,9 +35,13 @@
     scroll-snap-align: start;
   }
 
-  /* Lets the track run past the page padding to the viewport edge, as in Figma */
-  &.carousel--bleed-end {
-    --_carousel-bleed: 5.6rem;
+  /*
+    Lets the track run through the page gutters on both sides, so scrolled cards
+    are clipped by the side panel and the viewport edge rather than the content
+    column. At rest the first card still lines up with the header.
+  */
+  &.carousel--full-bleed {
+    --_carousel-bleed: var(--pr-page-gutter);
   }
 
   @media (prefers-reduced-motion: reduce) {
