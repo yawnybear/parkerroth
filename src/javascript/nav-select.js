@@ -1,8 +1,8 @@
 // Makes selecting a side-panel nav item one continuous motion (see nav-item.css):
-// on click the item keeps the "selecting" look (original size, beige fill, outline
-// closing into a solid line) instead of snapping back to its hover state on mouseup,
-// and navigation waits for that motion to finish so the page change starts from exactly
-// what the next page shows.
+// on click the item keeps the "selecting" state (outline closes into a solid line, then
+// it settles back to its original size with a beige fill) instead of snapping back to
+// its hover state on mouseup, and navigation waits for that motion to finish so the
+// page change starts from exactly what the next page shows.
 ;(() => {
   const nav = document.querySelector('.side-panel__footer')
   if (!nav) return
@@ -34,8 +34,12 @@
     if (event.persisted) nav.querySelectorAll('.nav-item--selecting').forEach(i => i.classList.remove('nav-item--selecting'))
   })
 
+  // Longest delay + duration among the item's transitions (the settle step ends last)
   function motionDuration(item) {
-    const durations = getComputedStyle(item).transitionDuration.split(',').map(d => parseFloat(d) * (d.includes('ms') ? 1 : 1000))
-    return Math.max(0, ...durations)
+    const toMs = t => parseFloat(t) * (t.trim().endsWith('ms') ? 1 : 1000)
+    const cs = getComputedStyle(item)
+    const durations = cs.transitionDuration.split(',').map(toMs)
+    const delays = cs.transitionDelay.split(',').map(toMs)
+    return Math.max(0, ...durations.map((d, i) => d + (delays[i % delays.length] || 0)))
   }
 })()

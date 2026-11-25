@@ -4,14 +4,18 @@
   One continuous motion from hover to selection:
   - Hover / keyboard focus (unselected items): grows, neutral fill, dashed accent outline.
   - Selecting (pressed, or .nav-item--selecting set by src/javascript/nav-select.js until
-    the page changes): scales back to its original size, the fill turns beige and the
-    dashes grow until they close into a solid line, all on the same timing.
+    the page changes): the dashes first grow until they close into a solid line, then
+    the item scales back to its original size and the fill turns beige.
   - Selected (.nav-item--active): that same end state; it doesn't react to hover.
   The outline is an SVG rect (.nav-item__outline-path) sized in CSS to the item's box.
 */.nav-item {
   --_nav-item-accent-color: var(--pr-color-blue);
-  /* Shared by every property so hover -> select reads as one motion (matches the hover scale) */
+  /* Hover in/out: every property on one timing (matches the shared hover scale) */
   --_nav-item-motion: 160ms ease-out;
+  /* Selecting: fill the line, then settle back to the original size */
+  --_nav-item-select-fill-duration: 140ms;
+  --_nav-item-select-fill: var(--_nav-item-select-fill-duration) ease-out;
+  --_nav-item-select-settle: 160ms ease-out;
 
   position: relative;
   display: flex;
@@ -76,16 +80,26 @@
     }
   }
 
-  /* Selecting or selected: original size, beige fill, dashes closed into a solid line */
+  /*
+    Selecting or selected: the dashes close into a solid line first (while still at the
+    hovered size), then the item scales back to its original size and the fill turns
+    beige. These transitions apply only on the way into this state.
+  */
   &:active,
   &.nav-item--selecting,
   &.nav-item--active {
     background-color: var(--op-color-background);
     transform: none;
+    transition:
+      background-color var(--_nav-item-select-settle) var(--_nav-item-select-fill-duration),
+      transform var(--_nav-item-select-settle) var(--_nav-item-select-fill-duration);
 
     .nav-item__outline-path {
       opacity: 1;
       stroke-dasharray: 4px 0;
+      transition:
+        opacity var(--_nav-item-select-fill),
+        stroke-dasharray var(--_nav-item-select-fill);
     }
   }
 
