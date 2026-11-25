@@ -30,13 +30,32 @@
   z-index: 1;
 }
 
-/* The card ⇄ detail-body morph ("project-detail" is set on .project-detail__body) */
+/*
+  The card ⇄ detail-body morph ("project-detail" is set on .project-detail__body; a
+  selected card or photo tile takes the name on the listing side).
+  The morphing box paints the panel itself (cards, tiles and the panel share the
+  neutral fill and 32px radius), so it reads as the selected item growing from its
+  current position on screen into the page. Snapshots keep their natural size, anchored
+  top-left and clipped by that shape, so content is revealed rather than stretched.
+  Used for opening/closing pages and for opening images in place (below).
+*/
 ::view-transition-group(project-detail) {
+  overflow: clip;
+  border-radius: var(--pr-radius-xl);
+  background-color: var(--pr-color-neutral);
   animation-duration: 420ms;
   animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Fade the card's contents out quickly and the page's in, so text isn't seen stretching */
+::view-transition-old(project-detail),
+::view-transition-new(project-detail) {
+  block-size: 100%;
+  inline-size: 100%;
+  object-fit: none;
+  object-position: top left;
+}
+
+/* The selected item's contents fade out quickly; the page's fade in as the panel grows */
 ::view-transition-old(project-detail) {
   animation-duration: 160ms;
 }
@@ -87,25 +106,13 @@ html:active-view-transition-type(exit-detail) {
   Opening / closing an image inside a detail page (image-viewer.js sets
   html[data-image-transition] for the duration). The body panel stays one container:
   its snapshots keep their natural size, anchored to the top and clipped by the panel's
-  rounded shape, so only the panel's outline animates while the article fades out and
-  the image fades in. The clicked image ("project-image") morphs into place on top.
+  rounded shape (shared rules above), so only the panel's outline animates while the
+  article fades out and the image fades in. The clicked image ("project-image") morphs
+  into place on top.
 */
 html[data-image-transition] {
-  /* The morphing box paints the panel itself, so it stays solid while content swaps */
   &::view-transition-group(project-detail) {
-    overflow: clip;
-    border-radius: var(--pr-radius-xl);
-    background-color: var(--pr-color-neutral);
     animation-duration: 320ms;
-    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-
-  &::view-transition-old(project-detail),
-  &::view-transition-new(project-detail) {
-    block-size: 100%;
-    inline-size: 100%;
-    object-fit: none;
-    object-position: top;
   }
 
   &::view-transition-old(project-detail) {
