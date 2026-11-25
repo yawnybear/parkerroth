@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Parker Roth site components (BEM + Optics)",
   "scripts": {
-    "build:css": "node scripts/build-css.js",
-    "build:pages": "node scripts/build-pages.js",
-    "build": "npm run build:css && npm run build:pages"
+    "build": "node scripts/build-pages.js"
   },
   "repository": {
     "type": "git",

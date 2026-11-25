@@ -1,6 +1,7 @@
 // Generates the static listing and detail pages from the CATEGORIES table below, so the
-// shared side panel, header and footer stay identical everywhere. Run `npm run build:pages`
-// after editing this file and commit the output. (components.html is maintained by hand.)
+// shared side panel, header and footer stay identical everywhere. Run `npm run build` after
+// editing this file and commit the output. (components.html is maintained by hand and
+// lists the same stylesheets.)
 const fs = require('fs')
 const path = require('path')
 const ROOT = path.join(__dirname, '..')
@@ -113,6 +114,22 @@ const speculationRules = main => {
   return `  <script type="speculationrules">${JSON.stringify(rules)}</script>\n`
 }
 
+// Stylesheets in cascade order. Each is its own <link>, so the browser fetches them in
+// parallel (CSS @import would chain the requests and delay every page change).
+const STYLESHEETS = [
+  // Optics core (no icon font: this project uses its own SVG media icons)
+  'node_modules/@rolemodel/optics/dist/css/optics+no_icons.css',
+  // Project tokens + Optics token overrides, base element styles
+  'src/stylesheets/tokens.css',
+  'src/stylesheets/base.css',
+  // Optics components, customized through their public API
+  ...['card', 'tag', 'button', 'breadcrumbs', 'content-header', 'side-panel'].map(f => `src/stylesheets/optics-overrides/${f}.css`),
+  // Project blocks with no Optics equivalent
+  ...['media-icon', 'nav-item', 'brand', 'site-footer', 'page-content', 'carousel', 'media-grid', 'project-detail'].map(f => `src/stylesheets/components/${f}.css`),
+  // Card ⇄ detail page transitions
+  'src/stylesheets/page-transitions.css',
+]
+
 // Each behaviour script is loaded only on pages that use it
 const page = ({ title, active, main }) => `<!doctype html>
 <html lang="en">
@@ -123,7 +140,7 @@ const page = ({ title, active, main }) => `<!doctype html>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="dist/application.css">
+${STYLESHEETS.map(href => `  <link rel="stylesheet" href="${href}">`).join('\n')}
   <link rel="expect" href="#page-end" blocking="render">
   <script src="src/javascript/page-transitions.js"></script>
   <script src="src/javascript/nav-select.js" defer></script>
