@@ -25,7 +25,7 @@
   border-radius: var(--pr-radius-m);
   color: var(--pr-color-text);
   font-size: var(--op-font-small);
-  font-weight: var(--op-font-weight-medium);
+  font-weight: var(--op-font-weight-normal); /* medium once selecting / selected */
   gap: var(--op-space-x-small);
   line-height: normal;
   text-decoration: none;
@@ -83,6 +83,7 @@
   &.nav-item--selecting,
   &.nav-item--active {
     background-color: var(--op-color-background);
+    font-weight: var(--op-font-weight-medium);
     transform: none;
     transition:
       background-color var(--_nav-item-select-settle) var(--_nav-item-select-fill-duration),
