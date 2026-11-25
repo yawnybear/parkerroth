@@ -55,11 +55,6 @@
     block-size: 98.2rem;
   }
 
-  /* Pins the nav-item hover state (neutral fill) for preview */
-  .component-gallery__hover-preview {
-    background-color: var(--pr-color-neutral);
-  }
-
   @media (width <= 768px) {
     padding: var(--op-space-medium);
     grid-template-columns: minmax(0, 1fr);
