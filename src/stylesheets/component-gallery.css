@@ -51,9 +51,9 @@
     inline-size: 20.2rem;
   }
 
-  /* Pins the nav-item hover state (grow, neutral fill, dashed outline) for preview */
+  /* Pins the nav-item hover state (grow, beige fill, dashed outline) for preview */
   .component-gallery__hover-preview {
-    background-color: var(--pr-color-neutral);
+    background-color: var(--op-color-background);
     transform: scale(var(--pr-hover-scale));
 
     .nav-item__outline-path {
