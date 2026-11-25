@@ -23,7 +23,7 @@
   .side-panel__intro {
     margin: 0;
     color: var(--pr-color-text-alt);
-    font-size: var(--op-font-medium);
+    font-size: var(--op-font-small);
     line-height: normal;
   }
 
