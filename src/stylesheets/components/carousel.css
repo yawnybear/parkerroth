@@ -38,6 +38,15 @@
     scroll-snap-align: start;
   }
 
+  /* Prev/next buttons (mixed onto .content-header__aside); hidden unless the row overflows */
+  .carousel__controls {
+    display: none;
+  }
+
+  &.carousel--scrollable .carousel__controls {
+    display: flex;
+  }
+
   /*
     Lets the track run through the page gutters on both sides, so scrolled cards
     are clipped by the side panel and the viewport edge rather than the content

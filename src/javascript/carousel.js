@@ -1,4 +1,6 @@
 // Wires prev/next buttons to each [data-carousel] row and disables them at the ends.
+// Rows whose cards all fit get no controls: .carousel--scrollable (which reveals
+// .carousel__controls, see carousel.css) is only set while the row overflows.
 const SCROLL_TOLERANCE = 2
 
 function setupCarousel(carousel) {
@@ -9,6 +11,7 @@ function setupCarousel(carousel) {
 
   const update = () => {
     const maxScroll = track.scrollWidth - track.clientWidth
+    carousel.classList.toggle('carousel--scrollable', maxScroll > SCROLL_TOLERANCE)
     prev.disabled = track.scrollLeft <= SCROLL_TOLERANCE
     next.disabled = track.scrollLeft >= maxScroll - SCROLL_TOLERANCE
   }
