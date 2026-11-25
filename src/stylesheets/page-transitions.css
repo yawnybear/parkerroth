@@ -72,48 +72,23 @@
 }
 
 /*
-  Closing a detail page (X, Back, or the nav) plays the opening in reverse: every timing
-  above mirrored in time (t -> 420ms - t) and the panel's easing reversed, so the panel
-  shrinks back into the card along the same path, the page fades out as it shrinks and
-  the card's contents fade in just as it lands. The "exit-detail" type is added by
-  page-transitions.js.
+  Closing a detail page (X, Back, or the nav) uses the same timings as opening. The
+  browser animates from the page's panel back to the card's position, so the panel
+  retraces its path and settles into the card with the same gentle ease: the page's
+  content fades out early and the card's contents fade in as the panel arrives.
+  (A literal time-reversal reverses the easing too, which bunches the shrink into the
+  last few frames and reads as a snap.) page-transitions.js still tags these
+  transitions "exit-detail" in case they need their own styling.
 */
-html:active-view-transition-type(exit-detail) {
-  &::view-transition-group(project-detail) {
-    animation-duration: 420ms;
-    animation-timing-function: cubic-bezier(0.8, 0.2, 0.8, 0);
-  }
-
-  /* Page content: opening faded it in over 120-420ms, so it fades out over 0-300ms */
-  &::view-transition-old(project-detail) {
-    animation-delay: 0ms;
-    animation-duration: 300ms;
-    animation-fill-mode: both;
-  }
-
-  /* Card content: opening faded it out over 0-160ms, so it fades in over 260-420ms */
-  &::view-transition-new(project-detail) {
-    animation-delay: 260ms;
-    animation-duration: 160ms;
-    animation-fill-mode: both;
-  }
-
-  /* Rest of the page: opening crossfaded over 0-260ms, so this runs over 160-420ms */
-  &::view-transition-old(root),
-  &::view-transition-new(root) {
-    animation-delay: 160ms;
-    animation-duration: 260ms;
-    animation-fill-mode: both;
-  }
-}
 
 /*
   Opening / closing an image inside a detail page (image-viewer.js sets
-  html[data-image-transition] for the duration). The body panel stays one container:
-  its snapshots keep their natural size, anchored to the top and clipped by the panel's
-  rounded shape (shared rules above), so only the panel's outline animates while the
-  article fades out and the image fades in. The clicked image ("project-image") morphs
-  into place on top.
+  html[data-image-transition] to "open" or "close" for the duration; both use these
+  timings, the browser animating back to the thumbnail on close). The body panel stays
+  one container: its snapshots keep their natural size, anchored top-left and clipped
+  by the panel's rounded shape (shared rules above), so only the panel's outline
+  animates while the outgoing content fades out and the incoming content fades in. The
+  clicked image ("project-image") morphs into place on top.
 */
 html[data-image-transition] {
   &::view-transition-group(project-detail),
@@ -122,34 +97,12 @@ html[data-image-transition] {
     animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  /* Opening: the article fades out over 0-140ms, the image area fades in over 0-220ms */
+  /* Outgoing content fades out over 0-140ms; incoming content fades in over 0-220ms */
   &::view-transition-old(project-detail) {
     animation-duration: 140ms;
   }
 
   &::view-transition-new(project-detail) {
     animation-duration: 220ms;
-  }
-}
-
-/* Closing an image is the same animation in reverse (t -> 320ms - t, easing reversed) */
-html[data-image-transition="close"] {
-  &::view-transition-group(project-detail),
-  &::view-transition-group(project-image) {
-    animation-timing-function: cubic-bezier(0.8, 0.2, 0.8, 0);
-  }
-
-  /* The image area fades out over 100-320ms */
-  &::view-transition-old(project-detail) {
-    animation-delay: 100ms;
-    animation-duration: 220ms;
-    animation-fill-mode: both;
-  }
-
-  /* The article fades back in over 180-320ms */
-  &::view-transition-new(project-detail) {
-    animation-delay: 180ms;
-    animation-duration: 140ms;
-    animation-fill-mode: both;
   }
 }
