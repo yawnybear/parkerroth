@@ -74,7 +74,9 @@
       <span class="breadcrumbs__text" aria-current="page">Image ${n}</span>`
     close.setAttribute('href', projectHref)
     close.setAttribute('aria-label', `Close image ${n}`)
-    scroller.scrollTop = 0
+    // Bring the opened image into view (below the floating breadcrumb bar). This runs
+    // inside the view transition, so the thumbnail morphs straight into place.
+    viewer.scrollIntoView({ block: 'start', behavior: 'instant' })
   }
 
   // Morph between the image's container and the viewer

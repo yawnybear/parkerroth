@@ -61,12 +61,13 @@
   }
 
   /*
-    Opened image (src/javascript/image-viewer.js): replaces the body's content and keeps
-    the source container's aspect ratio, fitted to the column and 70% of the viewport.
+    Opened image (src/javascript/image-viewer.js): replaces the body's content and fills
+    its width at the source container's aspect ratio. When opened it's scrolled to sit
+    just below the floating breadcrumb bar (12px gap + 64px bar + 20px space).
   */
   .project-detail__viewer {
     display: flex;
-    justify-content: center;
+    scroll-margin-block-start: calc(var(--op-space-small) + 6.4rem + var(--op-space-large));
   }
 
   .project-detail__viewer-image {
@@ -79,7 +80,7 @@
     border-radius: var(--pr-radius-m);
     aspect-ratio: var(--_project-detail-viewer-ratio);
     background-color: var(--pr-color-beige);
-    inline-size: min(100%, calc(70vh * var(--_project-detail-viewer-ratio)));
+    inline-size: 100%;
   }
 
   .project-detail__copy {
