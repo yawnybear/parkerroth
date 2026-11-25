@@ -1,24 +1,22 @@
 // Opens a project's images in place (see .project-detail__viewer in project-detail.css).
 //
-// Every image container in a detail page is a link to "?image=N". Opening one replaces
-// the body's content with that image and adds a breadcrumb level ("Propertyintel /
-// Image 2"); the project crumb and the X step back out. The URL is kept in sync, so the
-// back/forward buttons and shared links work (and without JS the link still reloads to
-// the same state). Changes morph the image between its container and the viewer with a
-// same-document view transition where supported.
+// Every grid image in a detail page is a link to "?image=N". Opening one replaces the
+// body's content with that image and adds a breadcrumb level ("Product / Propertyintel /
+// Image 2"); the project crumb steps back out, while the X always closes the whole page.
+// The URL is kept in sync, so back/forward and shared links work (without JS the link
+// reloads to the same page). Changes morph the image between its container and the
+// viewer with a same-document view transition where supported.
 ;(() => {
   const VT_NAME = 'project-image'
   const body = document.querySelector('.project-detail__body')
   const crumbs = document.querySelector('.project-detail .breadcrumbs')
-  const close = document.querySelector('.project-detail .content-header__aside .btn')
-  if (!body || !crumbs || !close) return
+  if (!body || !crumbs) return
 
   const sources = [...body.querySelectorAll('[data-image-index]')]
   if (!sources.length) return
 
   const projectCrumbs = crumbs.innerHTML
   const projectTitle = crumbs.querySelector('[aria-current]')?.textContent.trim() ?? document.title
-  const sectionHref = close.getAttribute('href')
   const projectHref = location.pathname.split('/').pop() || 'index.html'
 
   let viewer = null
@@ -43,8 +41,6 @@
     if (n === null) {
       body.classList.remove('project-detail__body--viewing')
       crumbs.innerHTML = projectCrumbs
-      close.setAttribute('href', sectionHref)
-      close.setAttribute('aria-label', 'Close')
       if (wasOpen) scroller.scrollTop = projectScroll
       return
     }
@@ -68,12 +64,18 @@
     body.append(viewer)
     body.classList.add('project-detail__body--viewing')
 
-    crumbs.innerHTML = `
-      <a class="breadcrumbs__link" href="${projectHref}">${projectTitle}</a>
+    // Keep the page's trail (e.g. "Product / Propertyintel"), turn the current crumb
+    // into a link back to the project, and add the image as the new current level
+    crumbs.innerHTML = projectCrumbs
+    const projectCrumb = crumbs.querySelector('[aria-current]')
+    const projectLink = document.createElement('a')
+    projectLink.className = 'breadcrumbs__link'
+    projectLink.href = projectHref
+    projectLink.textContent = projectTitle
+    projectCrumb.replaceWith(projectLink)
+    crumbs.insertAdjacentHTML('beforeend', `
       <span class="breadcrumbs__separator" aria-hidden="true">/</span>
-      <span class="breadcrumbs__text" aria-current="page">Image ${n}</span>`
-    close.setAttribute('href', projectHref)
-    close.setAttribute('aria-label', `Close image ${n}`)
+      <span class="breadcrumbs__text" aria-current="page">Image ${n}</span>`)
     // Start the opened image at the top of the page so the header stays attached
     // (not floating) and the image begins right under it. This runs inside the view
     // transition, so the thumbnail morphs straight into place.
@@ -118,11 +120,12 @@
     go(Number(link.dataset.imageIndex))
   })
 
-  // Step back out via the project crumb or the X (only while an image is open)
-  document.querySelector('.project-detail .content-header').addEventListener('click', event => {
+  // Step back out to the project via its crumb (only while an image is open).
+  // The category crumb and the X are normal links: the X always closes the whole page.
+  crumbs.addEventListener('click', event => {
     if (current === null) return
     const link = event.target.closest('a')
-    if (!link || (link !== close && !link.classList.contains('breadcrumbs__link'))) return
+    if (!link || link.getAttribute('href') !== projectHref) return
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
     event.preventDefault()
     go(null)
