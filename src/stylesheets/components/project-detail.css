@@ -62,12 +62,13 @@
 
   /*
     Opened image (src/javascript/image-viewer.js): replaces the body's content and fills
-    its width at the source container's aspect ratio. When opened it's scrolled to sit
-    just below the floating breadcrumb bar (12px gap + 64px bar + 20px space).
+    its width at the source container's aspect ratio, aligned to the top of the panel.
+    Opening scrolls the page to the top so the header stays attached above it.
   */
   .project-detail__viewer {
     display: flex;
-    scroll-margin-block-start: calc(var(--op-space-small) + 6.4rem + var(--op-space-large));
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 
   .project-detail__viewer-image {
