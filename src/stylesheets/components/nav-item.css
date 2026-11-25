@@ -1,7 +1,8 @@
 /*
   Primary navigation link with a media icon.
   Figma: "nav" state=default|hover|active.
-  The active outline takes the accent color of the item's media category.
+  Hover and active both draw an inside stroke in the item's media-category accent color.
+  (Figma's hover state used a neutral fill, which is invisible on the neutral side panel.)
 */
 .nav-item {
   --_nav-item-accent-color: var(--pr-color-blue);
@@ -20,10 +21,6 @@
   transition: var(--op-transition-input);
   white-space: nowrap;
 
-  &:hover {
-    background-color: var(--pr-color-neutral);
-  }
-
   &:focus-visible {
     outline: var(--op-border-width-large) solid var(--_nav-item-accent-color);
     outline-offset: 0;
@@ -33,7 +30,8 @@
     min-inline-size: 0;
   }
 
-  /* Inset shadow = Figma's inside stroke, so the outline doesn't change the item's size */
+  /* Inset shadow = Figma's inside stroke, so the stroke doesn't change the item's size */
+  &:hover,
   &.nav-item--active {
     box-shadow: inset var(--op-border-all) var(--_nav-item-accent-color);
   }

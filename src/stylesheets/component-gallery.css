@@ -55,9 +55,9 @@
     block-size: 98.2rem;
   }
 
-  /* Pins the Figma "hover" state for preview */
+  /* Pins the nav-item hover state (accent stroke) for preview */
   .component-gallery__hover-preview {
-    background-color: var(--pr-color-neutral);
+    box-shadow: inset var(--op-border-all) var(--pr-color-blue);
   }
 
   @media (width <= 768px) {
