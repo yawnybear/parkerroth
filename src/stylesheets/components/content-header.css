@@ -37,6 +37,8 @@
     margin:
       calc(var(--_content-header-float-padding-block) * -1)
       calc(var(--_content-header-float-overhang) * -1);
+    /* Keep the 4rem row height on top of the padding, even with no buttons in __aside */
+    min-block-size: calc(4rem + var(--_content-header-float-padding-block) * 2);
     inset-block-start: var(--_content-header-float-gap);
     transition:
       background-color 160ms ease-out,
