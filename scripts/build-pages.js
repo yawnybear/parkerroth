@@ -11,7 +11,6 @@ const LOREM_LONG = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
 
 // Intrinsic size of each media icon (see media-icon.css)
 const ICONS = {
-  story: ['story.svg', '28.0001', '29.1198'],
   design: ['design.svg', '33.0337', '26.4886'],
   video: ['video.svg', '38.8075', '25.9164'],
   photo: ['photo.svg', '39.9305', '26.3003'],
@@ -21,7 +20,6 @@ const NAV = [
   { key: 'design', label: 'Design', icon: 'design', href: 'index.html' },
   { key: 'video', label: 'Video', icon: 'video', href: 'video.html' },
   { key: 'photo', label: 'Photo', icon: 'photo', href: 'photo.html' },
-  { key: 'about', label: 'About', icon: 'story', href: 'about.html' },
 ]
 
 const indent = (str, n) => str.split('\n').map(l => (l ? ' '.repeat(n) + l : l)).join('\n')
@@ -278,25 +276,6 @@ ${items(photo).map(i => `  <li><a class="media-grid__link" href="${detailHref(ph
 </ul>`,
   }),
 }
-
-// About: a single panel (banner + copy) under a lone section label, laid out like a
-// project page but without the close button
-pages['about.html'] = page({
-  title: 'About — Parker Douglas Roth',
-  active: 'about',
-  main: `<article class="project-detail">
-  <header class="content-header content-header--sticky" data-floating-header>
-    <nav class="breadcrumbs" aria-label="Section">
-      <span class="breadcrumbs__label">About</span>
-    </nav>
-  </header>
-  <div class="project-detail__body">
-    <div class="project-detail__content">
-${indent([hero(), copy('About')].join('\n'), 6)}
-    </div>
-  </div>
-</article>`,
-})
 
 for (const category of CATEGORIES) {
   for (const i of items(category)) {
