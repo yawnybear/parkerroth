@@ -5819,7 +5819,6 @@ body {
       .card__details {
         justify-content: flex-start;
         padding-block-start: 0;
-        gap: var(--op-space-small);
       }
 
       .card__heading {
@@ -5953,13 +5952,11 @@ body {
     }
   }
 
-  /* A lone, non-clickable crumb (e.g. a listing section label); looks like a link at rest */
-  .breadcrumbs__label {
-    color: var(--pr-color-text-muted);
-    font-size: var(--__op-breadcrumbs-font-size);
-    font-weight: var(--op-font-weight-normal);
-  }
-
+  /*
+    __label: a lone, non-clickable crumb (e.g. a listing section label); looks like a
+    link at rest. __separator: the "/" between crumbs.
+  */
+  .breadcrumbs__label,
   .breadcrumbs__separator {
     color: var(--pr-color-text-muted);
     font-size: var(--__op-breadcrumbs-font-size);
@@ -6130,7 +6127,8 @@ body {
     the item scales back to its original size.
   - Selected (.nav-item--active): that same end state; it doesn't react to hover.
   The outline is an SVG rect (.nav-item__outline-path) sized in CSS to the item's box.
-*/.nav-item {
+*/
+.nav-item {
   --_nav-item-accent-color: var(--pr-color-blue);
   /* Hover in/out: every property on one timing (matches the shared hover scale) */
   --_nav-item-motion: 160ms ease-out;
@@ -6631,7 +6629,7 @@ body {
 /*
   Cross-document view transitions (Chrome/Edge 126+, Safari 18.2+; other browsers
   navigate normally). Opening a card morphs it into the detail page's body panel;
-  closing reverses it. Element naming is done by src/javascript/page-transitions.js.
+  closing morphs it back. Element naming is done by src/javascript/page-transitions.js.
 */
 @view-transition {
   navigation: auto;
@@ -6707,8 +6705,7 @@ body {
   retraces its path and settles into the card with the same gentle ease: the page's
   content fades out early and the card's contents fade in as the panel arrives.
   (A literal time-reversal reverses the easing too, which bunches the shrink into the
-  last few frames and reads as a snap.) page-transitions.js still tags these
-  transitions "exit-detail" in case they need their own styling.
+  last few frames and reads as a snap.)
 */
 
 /*

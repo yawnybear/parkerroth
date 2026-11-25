@@ -1,4 +1,4 @@
-/* Demo-only layout for index.html — not part of the component library. */
+/* Demo-only layout for components.html — not part of the component library. */
 .component-gallery {
   display: grid;
   padding: var(--op-space-3x-large);

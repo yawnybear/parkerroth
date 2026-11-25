@@ -24,13 +24,11 @@
     }
   }
 
-  /* A lone, non-clickable crumb (e.g. a listing section label); looks like a link at rest */
-  .breadcrumbs__label {
-    color: var(--pr-color-text-muted);
-    font-size: var(--__op-breadcrumbs-font-size);
-    font-weight: var(--op-font-weight-normal);
-  }
-
+  /*
+    __label: a lone, non-clickable crumb (e.g. a listing section label); looks like a
+    link at rest. __separator: the "/" between crumbs.
+  */
+  .breadcrumbs__label,
   .breadcrumbs__separator {
     color: var(--pr-color-text-muted);
     font-size: var(--__op-breadcrumbs-font-size);

@@ -9,7 +9,8 @@
     the item scales back to its original size.
   - Selected (.nav-item--active): that same end state; it doesn't react to hover.
   The outline is an SVG rect (.nav-item__outline-path) sized in CSS to the item's box.
-*/.nav-item {
+*/
+.nav-item {
   --_nav-item-accent-color: var(--pr-color-blue);
   /* Hover in/out: every property on one timing (matches the shared hover scale) */
   --_nav-item-motion: 160ms ease-out;

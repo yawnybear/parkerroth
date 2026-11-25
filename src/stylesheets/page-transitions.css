@@ -1,7 +1,7 @@
 /*
   Cross-document view transitions (Chrome/Edge 126+, Safari 18.2+; other browsers
   navigate normally). Opening a card morphs it into the detail page's body panel;
-  closing reverses it. Element naming is done by src/javascript/page-transitions.js.
+  closing morphs it back. Element naming is done by src/javascript/page-transitions.js.
 */
 @view-transition {
   navigation: auto;
@@ -77,8 +77,7 @@
   retraces its path and settles into the card with the same gentle ease: the page's
   content fades out early and the card's contents fade in as the panel arrives.
   (A literal time-reversal reverses the easing too, which bunches the shrink into the
-  last few frames and reads as a snap.) page-transitions.js still tags these
-  transitions "exit-detail" in case they need their own styling.
+  last few frames and reads as a snap.)
 */
 
 /*

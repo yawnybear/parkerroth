@@ -120,7 +120,6 @@
       .card__details {
         justify-content: flex-start;
         padding-block-start: 0;
-        gap: var(--op-space-small);
       }
 
       .card__heading {

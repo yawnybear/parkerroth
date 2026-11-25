@@ -1,7 +1,7 @@
 // Opens a project's images in place (see .project-detail__viewer in project-detail.css).
 //
 // Every grid image in a detail page is a link to "?image=N". Opening one replaces the
-// body's content with that image and adds a breadcrumb level ("Product / Propertyintel /
+// body's content with that image and adds a breadcrumb level ("Product / Project /
 // Image 2"); the project crumb steps back out, while the X always closes the whole page.
 // The URL is kept in sync, so back/forward and shared links work (without JS the link
 // reloads to the same page). Changes morph the image between its container and the
@@ -64,7 +64,7 @@
     body.append(viewer)
     body.classList.add('project-detail__body--viewing')
 
-    // Keep the page's trail (e.g. "Product / Propertyintel"), turn the current crumb
+    // Keep the page's trail (e.g. "Product / Project"), turn the current crumb
     // into a link back to the project, and add the image as the new current level
     crumbs.innerHTML = projectCrumbs
     const projectCrumb = crumbs.querySelector('[aria-current]')
