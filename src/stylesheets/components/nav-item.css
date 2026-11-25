@@ -2,6 +2,7 @@
   Primary navigation link with a media icon.
   Figma: "nav" state=default|hover|active.
   - Hover: neutral fill.
+  - Hover, focus, press and active (selected) all use the shared grow scale.
   - Active: keeps the neutral fill, plus an inside stroke in the item's media-category accent color, drawn by
     .nav-item__trim (an SVG rect, so the stroke can animate along its true perimeter).
     With .nav-item--trim-in it "trims on" around the item, then resolves into a
@@ -78,6 +79,8 @@
 
   &.nav-item--active {
     background-color: var(--pr-color-neutral);
+    /* Stays grown while selected, so the clicked item doesn't shrink as the page changes */
+    transform: scale(var(--pr-hover-scale));
 
     .nav-item__trim {
       display: block;
@@ -99,7 +102,8 @@
   @media (prefers-reduced-motion: reduce) {
     &:hover,
     &:focus-visible,
-    &:active {
+    &:active,
+    &.nav-item--active {
       transform: none;
     }
 
