@@ -16,17 +16,29 @@
   line-height: normal;
   min-inline-size: 4rem;
   text-transform: uppercase;
+  /* Optics animates colors via --op-transition-input; add the shared hover grow */
+  transition: var(--op-transition-input), var(--pr-hover-scale-transition);
 
+  /* Hover keeps the neutral fill; the shared grow is the hover feedback */
   &:hover {
-    background-color: var(--pr-color-beige);
+    background-color: var(--pr-color-neutral);
     box-shadow: none;
     color: var(--pr-color-text);
+    transform: scale(var(--pr-hover-scale));
   }
 
   &:focus-visible {
     background-color: var(--pr-color-neutral);
     box-shadow: 0 0 0 var(--op-border-width-large) var(--pr-color-blue);
     color: var(--pr-color-text);
+    transform: scale(var(--pr-hover-scale));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:hover,
+    &:focus-visible {
+      transform: none;
+    }
   }
 
   &.btn--active {

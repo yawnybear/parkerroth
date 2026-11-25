@@ -1,0 +1,107 @@
+/*
+  Cross-document view transitions (Chrome/Edge 126+, Safari 18.2+; other browsers
+  navigate normally). Opening a card morphs it into the detail page's body panel;
+  closing morphs it back. Element naming is done by src/javascript/page-transitions.js.
+*/
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
+
+/* The side panel is shared by every page, so it stays put instead of crossfading */
+.side-panel {
+  view-transition-name: side-panel;
+}
+
+/*
+  The detail page's (floating) breadcrumb bar gets its own group, kept above the
+  morphing body panel, so the panel never passes over it mid-transition.
+*/
+.project-detail .content-header {
+  view-transition-name: project-detail-header;
+}
+
+::view-transition-group(project-detail-header) {
+  z-index: 1;
+}
+
+/*
+  The card ⇄ detail-body morph ("project-detail" is set on .project-detail__body; a
+  selected card or photo tile takes the name on the listing side).
+  The morphing box paints the panel itself (cards, tiles and the panel share the
+  neutral fill and 32px radius), so it reads as the selected item growing from its
+  current position on screen into the page. Snapshots keep their natural size, anchored
+  top-left and clipped by that shape, so content is revealed rather than stretched.
+  Used for opening/closing pages and for opening images in place (below).
+*/
+::view-transition-group(project-detail) {
+  overflow: clip;
+  border-radius: var(--pr-radius-xl);
+  background-color: var(--pr-color-neutral);
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+::view-transition-old(project-detail),
+::view-transition-new(project-detail) {
+  block-size: 100%;
+  inline-size: 100%;
+  object-fit: none;
+  object-position: top left;
+}
+
+/* The selected item's contents fade out quickly; the page's fade in as the panel grows */
+::view-transition-old(project-detail) {
+  animation-duration: 160ms;
+}
+
+::view-transition-new(project-detail) {
+  animation-delay: 120ms;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 260ms;
+}
+
+/*
+  Closing a detail page (X, Back, or the nav) uses the same timings as opening. The
+  browser animates from the page's panel back to the card's position, so the panel
+  retraces its path and settles into the card with the same gentle ease: the page's
+  content fades out early and the card's contents fade in as the panel arrives.
+  (A literal time-reversal reverses the easing too, which bunches the shrink into the
+  last few frames and reads as a snap.)
+*/
+
+/*
+  Opening / closing an image inside a detail page (image-viewer.js sets
+  html[data-image-transition] to "open" or "close" for the duration; both use these
+  timings, the browser animating back to the thumbnail on close). The body panel stays
+  one container: its snapshots keep their natural size, anchored top-left and clipped
+  by the panel's rounded shape (shared rules above), so only the panel's outline
+  animates while the outgoing content fades out and the incoming content fades in. The
+  clicked image ("project-image") morphs into place on top.
+*/
+html[data-image-transition] {
+  &::view-transition-group(project-detail),
+  &::view-transition-group(project-image) {
+    animation-duration: 320ms;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  /* Outgoing content fades out over 0-140ms; incoming content fades in over 0-220ms */
+  &::view-transition-old(project-detail) {
+    animation-duration: 140ms;
+  }
+
+  &::view-transition-new(project-detail) {
+    animation-duration: 220ms;
+  }
+}

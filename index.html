@@ -3,198 +3,168 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Parker Roth Components</title>
+  <title>Design — Parker Douglas Roth</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="src/stylesheets/application.css">
-  <link rel="stylesheet" href="src/stylesheets/component-gallery.css">
+  <link rel="stylesheet" href="node_modules/@rolemodel/optics/dist/css/optics+no_icons.css">
+  <link rel="stylesheet" href="src/stylesheets/tokens.css">
+  <link rel="stylesheet" href="src/stylesheets/base.css">
+  <link rel="stylesheet" href="src/stylesheets/optics-overrides/card.css">
+  <link rel="stylesheet" href="src/stylesheets/optics-overrides/tag.css">
+  <link rel="stylesheet" href="src/stylesheets/optics-overrides/button.css">
+  <link rel="stylesheet" href="src/stylesheets/optics-overrides/breadcrumbs.css">
+  <link rel="stylesheet" href="src/stylesheets/optics-overrides/content-header.css">
+  <link rel="stylesheet" href="src/stylesheets/optics-overrides/side-panel.css">
+  <link rel="stylesheet" href="src/stylesheets/components/media-icon.css">
+  <link rel="stylesheet" href="src/stylesheets/components/nav-item.css">
+  <link rel="stylesheet" href="src/stylesheets/components/brand.css">
+  <link rel="stylesheet" href="src/stylesheets/components/site-footer.css">
+  <link rel="stylesheet" href="src/stylesheets/components/page-content.css">
+  <link rel="stylesheet" href="src/stylesheets/components/carousel.css">
+  <link rel="stylesheet" href="src/stylesheets/components/media-grid.css">
+  <link rel="stylesheet" href="src/stylesheets/components/project-detail.css">
+  <link rel="stylesheet" href="src/stylesheets/page-transitions.css">
+  <link rel="expect" href="#page-end" blocking="render">
+  <script src="src/javascript/page-transitions.js"></script>
+  <script src="src/javascript/nav-select.js" defer></script>
+  <script src="src/javascript/carousel.js" defer></script>
+  <script src="src/javascript/floating-header.js" defer></script>
+  <script type="speculationrules">{"prerender":[{"where":{"selector_matches":"a.card, a.media-grid__link[href$=\".html\"], a.nav-item"},"eagerness":"moderate"}]}</script>
 </head>
 <body>
-  <div class="component-gallery">
-    <main class="component-gallery__main">
-
-      <section class="component-gallery__section">
-        <h2 class="component-gallery__heading">card--inlay</h2>
-        <article class="card card--inlay">
-          <h3 class="card__title">Project name</h3>
-          <p class="card__description">Description</p>
-        </article>
-      </section>
-
-      <section class="component-gallery__section">
-        <h2 class="component-gallery__heading">card--project / card--project card--stacked</h2>
-        <div class="component-gallery__stack">
-          <article class="card card--project component-gallery__project-card">
-            <div class="card__media"></div>
-            <div class="card__details">
-              <div class="card__heading">
-                <h3 class="card__title">Name</h3>
-                <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              </div>
-              <ul class="card__tags">
-                <li class="tag">Tag 1</li>
-                <li class="tag">Tag 1</li>
-                <li class="tag">Tag 1</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card card--project card--stacked">
-            <div class="card__media"></div>
-            <div class="card__details">
-              <div class="card__heading">
-                <h3 class="card__title">Name</h3>
-              </div>
-              <ul class="card__tags">
-                <li class="tag">Tag 1</li>
-                <li class="tag">Tag 1</li>
-                <li class="tag">Tag 1</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <div class="component-gallery__row">
-        <section class="component-gallery__section">
-          <h2 class="component-gallery__heading">nav-item</h2>
-          <nav class="component-gallery__nav" aria-label="Nav item states">
-            <a class="nav-item nav-item--design" href="#design">
-              <span class="media-icon media-icon--design" aria-hidden="true"><img class="media-icon__image" src="assets/icons/design.svg" width="33.0337" height="26.4886" alt=""></span>
-              <span class="nav-item__label">Design</span>
-            </a>
-            <a class="nav-item nav-item--design component-gallery__hover-preview" href="#design">
-              <span class="media-icon media-icon--design" aria-hidden="true"><img class="media-icon__image" src="assets/icons/design.svg" width="33.0337" height="26.4886" alt=""></span>
-              <span class="nav-item__label">Design</span>
-            </a>
-            <a class="nav-item nav-item--design nav-item--active" href="#design" aria-current="page">
-              <span class="media-icon media-icon--design" aria-hidden="true"><img class="media-icon__image" src="assets/icons/design.svg" width="33.0337" height="26.4886" alt=""></span>
-              <span class="nav-item__label">Design</span>
-            </a>
-          </nav>
-        </section>
-
-        <section class="component-gallery__section">
-          <h2 class="component-gallery__heading">btn</h2>
-          <div class="component-gallery__stack">
-            <button class="btn" type="button" disabled aria-label="Previous">&lt;</button>
-            <button class="btn" type="button" aria-label="Previous">&lt;</button>
-            <button class="btn btn--active" type="button" aria-label="Previous">&lt;</button>
-          </div>
-        </section>
-
-        <section class="component-gallery__section">
-          <h2 class="component-gallery__heading">tag</h2>
-          <div class="component-gallery__stack">
-            <span class="tag">Tag 1</span>
-            <span class="tag tag--medium">Tag 1</span>
-          </div>
-        </section>
-
-        <section class="component-gallery__section">
-          <h2 class="component-gallery__heading">breadcrumbs</h2>
-          <div class="component-gallery__stack">
-            <nav class="breadcrumbs" aria-label="Breadcrumb">
-              <a class="breadcrumbs__link" href="#first">First</a>
-            </nav>
-            <nav class="breadcrumbs" aria-label="Breadcrumb">
-              <a class="breadcrumbs__link" href="#first">First</a>
-              <span class="breadcrumbs__separator" aria-hidden="true">/</span>
-              <span class="breadcrumbs__text" aria-current="page">Second</span>
-            </nav>
-          </div>
-        </section>
-
-        <section class="component-gallery__section">
-          <h2 class="component-gallery__heading">brand</h2>
-          <div class="component-gallery__stack">
-            <a class="brand" href="#home">
-              <span class="brand__line">Parker</span>
-              <span class="brand__line">Douglas</span>
-              <span class="brand__line">Roth</span>
-            </a>
-            <a class="brand brand--initials" href="#home" aria-label="Parker Douglas Roth">PdR</a>
-          </div>
-        </section>
+  <div class="app-with-sidebar">
+    <aside class="side-panel">
+      <div class="side-panel__body">
+        <a class="brand" href="index.html">
+          <span class="brand__line">Parker</span>
+          <span class="brand__line">Douglas</span>
+          <span class="brand__line">Roth</span>
+        </a>
+        <p class="side-panel__intro">Crafting thoughtful design, documenting authentic moments, and sharing stories in everything I do.</p>
       </div>
-
-      <section class="component-gallery__section">
-        <h2 class="component-gallery__heading">content-header</h2>
-        <header class="content-header">
-          <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a class="breadcrumbs__link" href="#first">First</a>
-          </nav>
-          <div class="content-header__aside">
-            <button class="btn" type="button" disabled aria-label="Previous">&lt;</button>
-            <button class="btn" type="button" disabled aria-label="Next">&gt;</button>
-          </div>
-        </header>
-        <header class="content-header">
-          <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a class="breadcrumbs__link" href="#first">First</a>
-            <span class="breadcrumbs__separator" aria-hidden="true">/</span>
-            <span class="breadcrumbs__text" aria-current="page">Second</span>
-          </nav>
-          <div class="content-header__aside">
-            <button class="btn" type="button" disabled aria-label="Close">X</button>
-          </div>
-        </header>
-      </section>
-
-      <section class="component-gallery__section">
-        <h2 class="component-gallery__heading">media-icon</h2>
-        <div class="component-gallery__row">
+      <nav class="side-panel__footer" aria-label="Primary">
+        <a class="nav-item nav-item--design nav-item--active" href="index.html" aria-current="page">
+          <svg class="nav-item__outline" aria-hidden="true" focusable="false"><rect class="nav-item__outline-path"/></svg>
           <span class="media-icon media-icon--design" aria-hidden="true"><img class="media-icon__image" src="assets/icons/design.svg" width="33.0337" height="26.4886" alt=""></span>
+          <span class="nav-item__label">Design</span>
+        </a>
+        <a class="nav-item nav-item--video" href="video.html">
+          <svg class="nav-item__outline" aria-hidden="true" focusable="false"><rect class="nav-item__outline-path"/></svg>
           <span class="media-icon media-icon--video" aria-hidden="true"><img class="media-icon__image" src="assets/icons/video.svg" width="38.8075" height="25.9164" alt=""></span>
+          <span class="nav-item__label">Video</span>
+        </a>
+        <a class="nav-item nav-item--photo" href="photo.html">
+          <svg class="nav-item__outline" aria-hidden="true" focusable="false"><rect class="nav-item__outline-path"/></svg>
           <span class="media-icon media-icon--photo" aria-hidden="true"><img class="media-icon__image" src="assets/icons/photo.svg" width="39.9305" height="26.3003" alt=""></span>
-          <span class="media-icon media-icon--story" aria-hidden="true"><img class="media-icon__image" src="assets/icons/story.svg" width="28.0001" height="29.1198" alt=""></span>
-        </div>
-      </section>
-
-      <section class="component-gallery__section">
-        <h2 class="component-gallery__heading">site-footer</h2>
-        <footer class="site-footer">
-          <a class="brand brand--initials" href="#home" aria-label="Parker Douglas Roth">PdR</a>
+          <span class="nav-item__label">Photo</span>
+        </a>
+      </nav>
+    </aside>
+    <div class="app-body">
+      <div class="page-content">
+        <main class="page-content__main">
+          <section class="carousel carousel--full-bleed" data-carousel aria-label="Product">
+            <header class="content-header content-header--sticky" data-floating-header>
+              <nav class="breadcrumbs" aria-label="Section">
+                <span class="breadcrumbs__label">Product</span>
+              </nav>
+              <div class="content-header__aside carousel__controls">
+                <button class="btn" type="button" data-carousel-prev aria-label="Previous Product">&lt;</button>
+                <button class="btn" type="button" data-carousel-next aria-label="Next Product">&gt;</button>
+              </div>
+            </header>
+            <ul class="carousel__track" data-carousel-track>
+              <li class="carousel__item">
+                <a class="card card--project" href="product-01.html">
+                  <div class="card__media"></div>
+                  <div class="card__details">
+                    <div class="card__heading">
+                      <h3 class="card__title">Project</h3>
+                      <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="carousel__item">
+                <a class="card card--project" href="product-02.html">
+                  <div class="card__media"></div>
+                  <div class="card__details">
+                    <div class="card__heading">
+                      <h3 class="card__title">Project</h3>
+                      <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="carousel__item">
+                <a class="card card--project" href="product-03.html">
+                  <div class="card__media"></div>
+                  <div class="card__details">
+                    <div class="card__heading">
+                      <h3 class="card__title">Project</h3>
+                      <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <ul class="card__tags">
+                      <li class="tag">Tag 1</li>
+                      <li class="tag">Tag 1</li>
+                      <li class="tag">Tag 1</li>
+                    </ul>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </section>
+          <section class="carousel carousel--full-bleed" data-carousel aria-label="Brand">
+            <header class="content-header content-header--sticky" data-floating-header>
+              <nav class="breadcrumbs" aria-label="Section">
+                <span class="breadcrumbs__label">Brand</span>
+              </nav>
+              <div class="content-header__aside carousel__controls">
+                <button class="btn" type="button" data-carousel-prev aria-label="Previous Brand">&lt;</button>
+                <button class="btn" type="button" data-carousel-next aria-label="Next Brand">&gt;</button>
+              </div>
+            </header>
+            <ul class="carousel__track" data-carousel-track>
+              <li class="carousel__item">
+                <a class="card card--project card--stacked" href="brand-01.html" aria-label="Project">
+                  <div class="card__media"></div>
+                </a>
+              </li>
+              <li class="carousel__item">
+                <a class="card card--project card--stacked" href="brand-02.html" aria-label="Project">
+                  <div class="card__media"></div>
+                </a>
+              </li>
+              <li class="carousel__item">
+                <a class="card card--project card--stacked" href="brand-03.html" aria-label="Project">
+                  <div class="card__media"></div>
+                </a>
+              </li>
+              <li class="carousel__item">
+                <a class="card card--project card--stacked" href="brand-04.html" aria-label="Project">
+                  <div class="card__media"></div>
+                </a>
+              </li>
+              <li class="carousel__item">
+                <a class="card card--project card--stacked" href="brand-05.html" aria-label="Project">
+                  <div class="card__media"></div>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </main>
+        <footer class="site-footer page-content__footer">
+          <a class="brand brand--initials" href="index.html" aria-label="Parker Douglas Roth">PdR</a>
           <div class="site-footer__credits">
             <p class="site-footer__credit">Designed by a human</p>
             <p class="site-footer__credit">In Greenville, South Carolina</p>
             <p class="site-footer__credit site-footer__credit--muted">Copyright, 2026</p>
           </div>
         </footer>
-      </section>
-    </main>
-
-    <div class="component-gallery__panel-frame">
-      <aside class="side-panel">
-        <div class="side-panel__body">
-          <a class="brand" href="#home">
-            <span class="brand__line">Parker</span>
-            <span class="brand__line">Douglas</span>
-            <span class="brand__line">Roth</span>
-          </a>
-          <p class="side-panel__intro">Crafting thoughtful design, documenting authentic moments, and sharing stories in everything I do.</p>
-        </div>
-        <nav class="side-panel__footer" aria-label="Primary">
-          <a class="nav-item nav-item--story nav-item--active" href="#overview" aria-current="page">
-            <span class="media-icon media-icon--story" aria-hidden="true"><img class="media-icon__image" src="assets/icons/story.svg" width="28.0001" height="29.1198" alt=""></span>
-            <span class="nav-item__label">Overview</span>
-          </a>
-          <a class="nav-item nav-item--design" href="#design">
-            <span class="media-icon media-icon--design" aria-hidden="true"><img class="media-icon__image" src="assets/icons/design.svg" width="33.0337" height="26.4886" alt=""></span>
-            <span class="nav-item__label">Design</span>
-          </a>
-          <a class="nav-item nav-item--video" href="#video">
-            <span class="media-icon media-icon--video" aria-hidden="true"><img class="media-icon__image" src="assets/icons/video.svg" width="38.8075" height="25.9164" alt=""></span>
-            <span class="nav-item__label">Video</span>
-          </a>
-          <a class="nav-item nav-item--photo" href="#photo">
-            <span class="media-icon media-icon--photo" aria-hidden="true"><img class="media-icon__image" src="assets/icons/photo.svg" width="39.9305" height="26.3003" alt=""></span>
-            <span class="nav-item__label">Photo</span>
-          </a>
-        </nav>
-      </aside>
+      </div>
     </div>
   </div>
+  <span id="page-end" hidden></span>
 </body>
 </html>

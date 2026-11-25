@@ -1,0 +1,73 @@
+/*
+  Horizontally scrolling row of cards with prev/next controls.
+  Figma: "row" (header + row-body). The header is an Optics .content-header.
+  Behaviour: src/javascript/carousel.js
+*/
+.carousel {
+  --_carousel-bleed: 0rem;
+
+  /* Vertical room so cards scaled on hover aren't clipped (overflow-x also clips y) */
+  --_carousel-hover-room: var(--op-space-small);
+
+  display: flex;
+  min-inline-size: 0;
+  flex-direction: column;
+  gap: var(--op-space-large);
+
+  .carousel__track {
+    display: flex;
+    align-items: flex-start;
+    padding: var(--_carousel-hover-room) var(--_carousel-bleed);
+    margin: calc(var(--_carousel-hover-room) * -1) calc(var(--_carousel-bleed) * -1);
+    gap: var(--op-space-medium);
+    list-style: none;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-behavior: smooth;
+    scroll-padding-inline: var(--_carousel-bleed);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .carousel__item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  /* Prev/next buttons (mixed onto .content-header__aside); hidden unless the row overflows */
+  .carousel__controls {
+    display: none;
+  }
+
+  &.carousel--scrollable .carousel__controls {
+    display: flex;
+  }
+
+  /*
+    Lets the track run through the page gutters on both sides, so scrolled cards
+    are clipped by the side panel and the viewport edge rather than the content
+    column. At rest the first card still lines up with the header.
+  */
+  &.carousel--full-bleed {
+    --_carousel-bleed: var(--pr-page-gutter);
+
+    /*
+      Inner-shadow style fade as cards scroll behind the side panel. A mask (not an
+      inset box-shadow, which paints beneath child content) fades the cards across the
+      start gutter; at rest the first card sits just past it, so it stays fully opaque.
+    */
+    .carousel__track {
+      mask-image: linear-gradient(to right, transparent, #000 var(--_carousel-bleed));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel__track {
+      scroll-behavior: auto;
+    }
+  }
+}

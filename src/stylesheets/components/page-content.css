@@ -1,0 +1,29 @@
+/*
+  Content column beside the side panel (inside Optics' .app-body): the page's <main>
+  followed by the site footer.
+  Figma: screen > "main" (listing pages) and the standalone "main" frames (detail pages).
+
+  - Listing and detail pages share the same padding so the header/breadcrumb stays
+    in place when navigating between them (Figma's detail frames use 40px inline
+    padding; that is intentionally aligned to the listing's 56px here).
+  - <main> is at least as tall as the viewport (minus the top padding), so the
+    footer always starts below the fold — even on short pages you scroll to reach it.
+    100vh matches the height Optics gives .app-with-sidebar (the scroll container).
+*/
+.page-content {
+  --_page-content-padding-block: var(--pr-page-padding-block);
+  --_page-content-padding-inline: var(--pr-page-gutter);
+
+  display: flex;
+  flex-direction: column;
+  padding: var(--_page-content-padding-block) var(--_page-content-padding-inline);
+  gap: var(--op-space-3x-large);
+
+  .page-content__main {
+    display: flex;
+    min-block-size: calc(100vh - var(--_page-content-padding-block));
+    min-inline-size: 0;
+    flex-direction: column;
+    gap: var(--op-space-large);
+  }
+}

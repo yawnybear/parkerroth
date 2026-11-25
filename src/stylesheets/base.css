@@ -1,0 +1,12 @@
+/*
+  Base element styles layered on top of Optics core.
+
+  Optics sets font-family only on <html> and relies on inheritance. Declaring it on
+  <body> as well keeps the brand font when the page is embedded in a host document
+  that styles <body> directly (e.g. the Claude artifact preview shell).
+  This is an element selector by necessity; BEM blocks never style tags.
+*/
+body {
+  font-family: var(--op-font-family);
+  line-height: var(--op-line-height-base);
+}

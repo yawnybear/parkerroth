@@ -2,13 +2,15 @@
   Overrides the Optics `.side-panel` base.
   Figma: "side-panel" — brand + intro in __body, nav items in __footer.
   Adds .side-panel__intro for the bio copy.
+  Shares the page background; a neutral stroke on the inline end divides it from the
+  content (Figma used a neutral fill, which hid the stroke).
 */
 .side-panel {
   --_op-side-panel-width: 27rem;
 
   padding: 3.6rem var(--op-space-large) var(--op-space-large);
   border-inline-end: var(--op-border-width-large) solid var(--pr-color-neutral);
-  background-color: var(--pr-color-neutral);
+  background-color: var(--op-color-background);
   color: var(--pr-color-text);
 
   .side-panel__body {
@@ -21,7 +23,7 @@
   .side-panel__intro {
     margin: 0;
     color: var(--pr-color-text-alt);
-    font-size: var(--op-font-medium);
+    font-size: var(--op-font-small);
     line-height: normal;
   }
 

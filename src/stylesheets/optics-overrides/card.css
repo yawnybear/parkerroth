@@ -65,6 +65,30 @@
     background-color: var(--pr-color-neutral);
     color: var(--pr-color-text);
     gap: var(--op-space-x-large);
+    inline-size: 57.2rem;
+    max-inline-size: 100%;
+    text-decoration: none;
+    transition: var(--pr-hover-scale-transition);
+
+    /* Grows slightly to signal it's clickable (large and stacked cards alike) */
+    &:hover,
+    &:focus-visible {
+      transform: scale(var(--pr-hover-scale));
+    }
+
+    &:focus-visible {
+      outline: var(--op-border-width-large) solid var(--pr-color-blue);
+      outline-offset: var(--op-space-3x-small);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+
+      &:hover,
+      &:focus-visible {
+        transform: none;
+      }
+    }
 
     .card__details {
       flex: 1;
@@ -91,11 +115,11 @@
       display: inline-flex;
       flex-direction: column;
       gap: var(--op-space-small);
+      inline-size: auto;
 
       .card__details {
         justify-content: flex-start;
         padding-block-start: 0;
-        gap: var(--op-space-small);
       }
 
       .card__heading {

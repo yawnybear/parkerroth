@@ -1,28 +1,39 @@
 /*
   Primary navigation link with a media icon.
   Figma: "nav" state=default|hover|active.
-  The active outline takes the accent color of the item's media category.
+  One continuous motion from hover to selection:
+  - Hover / keyboard focus (unselected items): grows, with a neutral fill.
+  - Selecting (pressed, or .nav-item--selecting set by src/javascript/nav-select.js until
+    the page changes): the solid accent outline fades in first, then the item scales back
+    to its original size and the fill turns beige.
+  - Selected (.nav-item--active): that same end state; it doesn't react to hover.
+  The outline is an SVG rect (.nav-item__outline-path) sized in CSS to the item's box.
 */
 .nav-item {
   --_nav-item-accent-color: var(--pr-color-blue);
+  /* Hover in/out: every property on one timing (matches the shared hover scale) */
+  --_nav-item-motion: 160ms ease-out;
+  /* Selecting: show the line, then settle back to the original size */
+  --_nav-item-select-fill-duration: 140ms;
+  --_nav-item-select-fill: var(--_nav-item-select-fill-duration) ease-out;
+  --_nav-item-select-settle: 160ms ease-out;
 
+  position: relative;
   display: flex;
   align-items: center;
   padding: var(--op-space-x-small) var(--op-space-small);
   border-radius: var(--pr-radius-m);
   color: var(--pr-color-text);
   font-size: var(--op-font-small);
-  font-weight: var(--op-font-weight-medium);
+  font-weight: var(--op-font-weight-normal); /* medium once selecting / selected */
   gap: var(--op-space-x-small);
   line-height: normal;
   text-decoration: none;
   text-transform: uppercase;
-  transition: var(--op-transition-input);
+  transition:
+    background-color var(--_nav-item-motion),
+    transform var(--_nav-item-motion);
   white-space: nowrap;
-
-  &:hover {
-    background-color: var(--pr-color-neutral);
-  }
 
   &:focus-visible {
     outline: var(--op-border-width-large) solid var(--_nav-item-accent-color);
@@ -33,9 +44,61 @@
     min-inline-size: 0;
   }
 
-  /* Inset shadow = Figma's inside stroke, so the outline doesn't change the item's size */
+  /* Outline overlay; geometry is set in CSS so it always matches the item's box */
+  .nav-item__outline {
+    position: absolute;
+    overflow: visible;
+    block-size: 100%;
+    inline-size: 100%;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  /* Solid accent line, shown only while selecting / selected */
+  .nav-item__outline-path {
+    x: 0.5px;
+    y: 0.5px;
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+    fill: none;
+    opacity: 0;
+    rx: calc(var(--pr-radius-m) - 0.5px);
+    stroke: var(--_nav-item-accent-color);
+    stroke-width: var(--op-border-width);
+    transition: opacity var(--_nav-item-motion);
+  }
+
+  /* Hover / focus on unselected items not being selected: grow, neutral fill */
+  &:not(.nav-item--active, .nav-item--selecting, :active):is(:hover, :focus-visible) {
+    background-color: var(--pr-color-neutral);
+    transform: scale(var(--pr-hover-scale));
+  }
+
+  /*
+    Selecting or selected: the solid line appears first (while still at the hovered
+    size), then the item scales back to its original size and the fill turns beige.
+    These transitions apply only on the way into this state.
+  */
+  &:active,
+  &.nav-item--selecting,
   &.nav-item--active {
-    box-shadow: inset var(--op-border-all) var(--_nav-item-accent-color);
+    background-color: var(--op-color-background);
+    font-weight: var(--op-font-weight-medium);
+    transform: none;
+    transition:
+      background-color var(--_nav-item-select-settle) var(--_nav-item-select-fill-duration),
+      transform var(--_nav-item-select-settle) var(--_nav-item-select-fill-duration);
+
+    .nav-item__outline-path {
+      opacity: 1;
+      transition: opacity var(--_nav-item-select-fill);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:not(.nav-item--active, .nav-item--selecting, :active):is(:hover, :focus-visible) {
+      transform: none;
+    }
   }
 
   &.nav-item--design {

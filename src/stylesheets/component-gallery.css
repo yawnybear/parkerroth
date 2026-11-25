@@ -1,4 +1,4 @@
-/* Demo-only layout for index.html — not part of the component library. */
+/* Demo-only layout for components.html — not part of the component library. */
 .component-gallery {
   display: grid;
   padding: var(--op-space-3x-large);
@@ -44,10 +44,6 @@
     gap: var(--op-space-large);
   }
 
-  .component-gallery__project-card {
-    max-inline-size: 57.2rem;
-  }
-
   .component-gallery__nav {
     display: flex;
     flex-direction: column;
@@ -55,13 +51,14 @@
     inline-size: 20.2rem;
   }
 
-  .component-gallery__panel-frame {
-    block-size: 98.2rem;
-  }
-
-  /* Pins the Figma "hover" state for preview */
+  /* Pins the nav-item hover state (grow, neutral fill) for preview */
   .component-gallery__hover-preview {
     background-color: var(--pr-color-neutral);
+    transform: scale(var(--pr-hover-scale));
+  }
+
+  .component-gallery__panel-frame {
+    block-size: 98.2rem;
   }
 
   @media (width <= 768px) {

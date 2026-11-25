@@ -1,0 +1,102 @@
+/*
+  Project / photo detail view.
+  Figma: detail "main" frames — header, neutral body with hero, copy blocks and image grids.
+*/
+.project-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--op-space-large);
+
+  .project-detail__body {
+    view-transition-name: project-detail; /* card ⇄ detail morph target (page-transitions.css) */
+
+    display: flex;
+    flex-direction: column;
+    /* The end padding matches the content's total inline inset (body 40 + copy 20) */
+    padding: var(--op-space-3x-large) var(--op-space-3x-large) 6rem;
+    border-radius: var(--pr-radius-xl);
+    background-color: var(--pr-color-neutral);
+    gap: var(--op-space-large);
+
+    &.project-detail__body--viewing .project-detail__content {
+      display: none;
+    }
+  }
+
+  .project-detail__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--op-space-large);
+  }
+
+  .project-detail__hero {
+    display: block;
+    border-radius: var(--pr-radius-m);
+    aspect-ratio: 1082 / 400;
+    background-color: var(--pr-color-beige);
+    inline-size: 100%;
+    object-fit: cover;
+  }
+
+  /*
+    Opened image (src/javascript/image-viewer.js): replaces the body's content and fills
+    its width at the source container's aspect ratio, aligned to the top of the panel.
+    Opening scrolls the page to the top so the header stays attached above it.
+  */
+  .project-detail__viewer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .project-detail__viewer-image {
+    --_project-detail-viewer-ratio: 1;
+
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--pr-radius-m);
+    aspect-ratio: var(--_project-detail-viewer-ratio);
+    background-color: var(--pr-color-beige);
+    inline-size: 100%;
+  }
+
+  .project-detail__copy {
+    display: flex;
+    flex-direction: column;
+    padding: var(--op-space-large);
+    gap: var(--op-space-x-small);
+  }
+
+  .project-detail__title {
+    margin: 0;
+    color: var(--pr-color-text);
+    font-size: var(--op-font-2x-large);
+    font-weight: var(--op-font-weight-semi-bold);
+    line-height: normal;
+    text-transform: uppercase;
+  }
+
+  .project-detail__text {
+    margin: 0;
+    color: var(--pr-color-text-alt);
+    font-size: var(--op-font-medium);
+    line-height: normal;
+  }
+
+  .project-detail__gallery {
+    padding-inline: var(--op-space-large);
+  }
+
+  @media (width <= 768px) {
+    .project-detail__body {
+      padding: var(--op-space-medium);
+    }
+
+    .project-detail__copy,
+    .project-detail__gallery {
+      padding-inline: 0;
+    }
+  }
+}
