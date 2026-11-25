@@ -1,7 +1,8 @@
 /*
   Overrides the Optics `.breadcrumbs` base.
   Figma: "breadcrumb" step=first|second.
-  Adds .breadcrumbs__separator (Optics has no separator element).
+  Adds .breadcrumbs__separator (Optics has no separator element) and
+  .breadcrumbs__label for a single, non-clickable crumb.
 */
 .breadcrumbs {
   --_op-breadcrumbs-font-size-small: var(--op-font-small);
@@ -21,6 +22,13 @@
     &:hover {
       color: var(--pr-color-text-alt);
     }
+  }
+
+  /* A lone, non-clickable crumb (e.g. a listing section label); looks like a link at rest */
+  .breadcrumbs__label {
+    color: var(--pr-color-text-muted);
+    font-size: var(--__op-breadcrumbs-font-size);
+    font-weight: var(--op-font-weight-normal);
   }
 
   .breadcrumbs__separator {
