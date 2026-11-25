@@ -56,7 +56,7 @@
     background-color: var(--pr-color-neutral);
     transform: scale(var(--pr-hover-scale));
 
-    .nav-item__outline-path--hover {
+    .nav-item__outline-path {
       opacity: 1;
     }
   }

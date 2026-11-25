@@ -1,16 +1,17 @@
 /*
   Primary navigation link with a media icon.
   Figma: "nav" state=default|hover|active.
-  - Hover / keyboard focus (unselected items): neutral fill, the shared grow scale and
-    a dashed outline in the item's media-category accent color.
-  - Pressed (selecting it): scales back to its original size and takes the selected look
-    straight away, so it matches the next page and nothing jumps during navigation.
-  - Selected (.nav-item--active): beige fill and a solid accent outline; it doesn't react
-    to hover, since it's already the current page.
-  Both outlines are SVG rects (.nav-item__outline-path) sized in CSS to the item's box.
-*/
-.nav-item {
+  One continuous motion from hover to selection:
+  - Hover / keyboard focus (unselected items): grows, neutral fill, dashed accent outline.
+  - Selecting (pressed, or .nav-item--selecting set by src/javascript/nav-select.js until
+    the page changes): scales back to its original size, the fill turns beige and the
+    dashes grow until they close into a solid line, all on the same timing.
+  - Selected (.nav-item--active): that same end state; it doesn't react to hover.
+  The outline is an SVG rect (.nav-item__outline-path) sized in CSS to the item's box.
+*/.nav-item {
   --_nav-item-accent-color: var(--pr-color-blue);
+  /* Shared by every property so hover -> select reads as one motion (matches the hover scale) */
+  --_nav-item-motion: 160ms ease-out;
 
   position: relative;
   display: flex;
@@ -24,7 +25,9 @@
   line-height: normal;
   text-decoration: none;
   text-transform: uppercase;
-  transition: var(--op-transition-input), var(--pr-hover-scale-transition);
+  transition:
+    background-color var(--_nav-item-motion),
+    transform var(--_nav-item-motion);
   white-space: nowrap;
 
   &:focus-visible {
@@ -46,6 +49,7 @@
     pointer-events: none;
   }
 
+  /* Dashed (4/4) when hovered; the gaps close to 0 for the solid selected line */
   .nav-item__outline-path {
     x: 0.5px;
     y: 0.5px;
@@ -55,41 +59,38 @@
     opacity: 0;
     rx: calc(var(--pr-radius-m) - 0.5px);
     stroke: var(--_nav-item-accent-color);
+    stroke-dasharray: 4px 4px;
     stroke-width: var(--op-border-width);
-    transition: opacity 120ms ease-out;
-
-    &.nav-item__outline-path--hover {
-      stroke-dasharray: 4 4;
-    }
+    transition:
+      opacity var(--_nav-item-motion),
+      stroke-dasharray var(--_nav-item-motion);
   }
 
-  /* Hover / focus on unselected, unpressed items: grow, neutral fill, dashed outline */
-  &:not(.nav-item--active, :active):is(:hover, :focus-visible) {
+  /* Hover / focus on unselected items not being selected: grow, neutral fill, dashes */
+  &:not(.nav-item--active, .nav-item--selecting, :active):is(:hover, :focus-visible) {
     background-color: var(--pr-color-neutral);
     transform: scale(var(--pr-hover-scale));
 
-    .nav-item__outline-path--hover {
+    .nav-item__outline-path {
       opacity: 1;
     }
   }
 
-  /* Pressed or selected: original size, beige fill, solid outline */
+  /* Selecting or selected: original size, beige fill, dashes closed into a solid line */
   &:active,
+  &.nav-item--selecting,
   &.nav-item--active {
     background-color: var(--op-color-background);
     transform: none;
 
-    .nav-item__outline-path--hover {
-      opacity: 0;
-    }
-
-    .nav-item__outline-path--selected {
+    .nav-item__outline-path {
       opacity: 1;
+      stroke-dasharray: 4px 0;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    &:not(.nav-item--active, :active):is(:hover, :focus-visible) {
+    &:not(.nav-item--active, .nav-item--selecting, :active):is(:hover, :focus-visible) {
       transform: none;
     }
   }
