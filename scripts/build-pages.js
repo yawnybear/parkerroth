@@ -180,7 +180,7 @@ const IMG = '__IMG__'
 const imageLinkAttrs = `href="?image=${IMG}" data-image-index="${IMG}" aria-label="Image ${IMG}"`
 
 // The banner image is static (not openable)
-const hero = (modifiers = [], inner = '') => `<div class="project-detail__hero${modifiers.map(m => ' project-detail__hero--' + m).join('')}">${inner}</div>`
+const hero = () => '<div class="project-detail__hero"></div>'
 
 const grid = (count, modifiers = []) => `<ul class="media-grid media-grid--inset${modifiers.map(m => ' media-grid--' + m).join('')} project-detail__gallery">
 ${Array.from({ length: count }, () => `  <li><a class="media-grid__link" ${imageLinkAttrs}><span class="media-grid__item"></span></a></li>`).join('\n')}
@@ -209,13 +209,13 @@ const CATEGORIES = [
   { key: 'brand', label: 'Brand', page: 'index.html', nav: 'design', count: 5, card: 'stacked',
     body: () => [hero(), copy(TITLE), grid(3)] },
   { key: 'documentary', label: 'Documentary', page: 'video.html', nav: 'video', count: 3, card: 'inline', tags: [3],
-    body: () => [hero(['widescreen']), copy(TITLE), grid(9, ['widescreen'])] },
+    body: () => [hero(), copy(TITLE), grid(9, ['widescreen'])] },
   { key: 'narrative', label: 'Narrative', page: 'video.html', nav: 'video', count: 1, card: 'inline',
-    body: () => [hero(['widescreen']), copy(TITLE), grid(3, ['widescreen'])] },
+    body: () => [hero(), copy(TITLE), grid(3, ['widescreen'])] },
   { key: 'experimental', label: 'Experimental', page: 'video.html', nav: 'video', count: 5, card: 'stacked', tags: 'all',
-    body: () => [hero(['widescreen']), copy(TITLE), grid(3, ['widescreen'])] },
+    body: () => [hero(), copy(TITLE), grid(3, ['widescreen'])] },
   { key: 'photo', label: 'Gallery', page: 'photo.html', nav: 'photo', count: 14, card: 'tile',
-    body: () => [hero(['widescreen']), copy(TITLE)] },
+    body: () => [hero(), copy(TITLE)] },
 ]
 
 const detailHref = (category, i) => `${category.key}-${pad(i)}.html`

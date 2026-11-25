@@ -12,7 +12,8 @@
 
     display: flex;
     flex-direction: column;
-    padding: var(--op-space-3x-large);
+    /* The end padding matches the content's total inline inset (body 40 + copy 20) */
+    padding: var(--op-space-3x-large) var(--op-space-3x-large) 6rem;
     border-radius: var(--pr-radius-xl);
     background-color: var(--pr-color-neutral);
     gap: var(--op-space-large);
@@ -28,17 +29,14 @@
     gap: var(--op-space-large);
   }
 
+  /* Banner: scales with the viewport's height so it never fills a large monitor */
   .project-detail__hero {
     display: block;
     border-radius: var(--pr-radius-m);
-    aspect-ratio: 1082 / 400;
     background-color: var(--pr-color-beige);
+    block-size: 30vh;
     inline-size: 100%;
     object-fit: cover;
-
-    &.project-detail__hero--widescreen {
-      aspect-ratio: 16 / 9;
-    }
   }
 
   /*
