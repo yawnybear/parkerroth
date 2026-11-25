@@ -20,7 +20,7 @@
     object-fit: cover;
   }
 
-  /* Image containers share the cards' hover grow */
+  /* Image containers grow on hover, more subtly than cards and buttons */
   .media-grid__link {
     display: block;
     border-radius: var(--pr-radius-m);
@@ -28,7 +28,7 @@
 
     &:hover,
     &:focus-visible {
-      transform: scale(var(--pr-hover-scale));
+      transform: scale(var(--pr-hover-scale-subtle));
     }
 
     @media (prefers-reduced-motion: reduce) {

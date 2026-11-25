@@ -28,30 +28,6 @@
     gap: var(--op-space-large);
   }
 
-  /* Image containers open in the viewer; they share the cards' hover grow */
-  .project-detail__hero-link {
-    display: block;
-    border-radius: var(--pr-radius-m);
-    transition: var(--pr-hover-scale-transition);
-
-    &:hover,
-    &:focus-visible {
-      transform: scale(var(--pr-hover-scale));
-    }
-
-    &:focus-visible {
-      outline: var(--op-border-width-large) solid var(--pr-color-blue);
-      outline-offset: var(--op-space-3x-small);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      &:hover,
-      &:focus-visible {
-        transform: none;
-      }
-    }
-  }
-
   .project-detail__hero {
     display: block;
     border-radius: var(--pr-radius-m);
