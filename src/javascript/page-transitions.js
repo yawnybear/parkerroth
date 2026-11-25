@@ -4,6 +4,8 @@
 // the transition. Naming on demand avoids duplicate names on pages where many links
 // share a destination (e.g. the photo grid), which would cancel the transition.
 //
+// Also remembers a listing's scroll position for when you close back to it (see below).
+//
 // Loaded in <head> without defer so the listeners exist before the first render;
 // <link rel="expect" ... blocking="render"> keeps that render waiting for the DOM.
 ;(() => {
@@ -56,6 +58,7 @@
   // Arriving on this page: name the card we came back from
   window.addEventListener('pagereveal', event => {
     clearNames()
+    restoreListingPosition()
     const exiting = storage.take()
     const from = navigation?.activation?.from?.url
     if (!event.viewTransition || !from) return
@@ -65,4 +68,55 @@
     name(card)
     event.viewTransition.finished.finally(clearNames)
   })
+
+  // --- Remember where you were on a listing ---------------------------------------
+  // Leaving a listing saves its scroll position (page + each row's sideways scroll).
+  // Closing a detail page back to it (the X or the category crumb), or going back /
+  // forward to it, restores that position before the first render, so the reverse
+  // morph lands on the card you opened. Other arrivals (e.g. the side nav) start at
+  // the top.
+  const POSITION_PREFIX = 'pr-listing-position:'
+  const RETURN_FLAG = 'pr-listing-return'
+  const isListing = () => !document.querySelector('.project-detail__body') && !!document.querySelector('.page-content')
+  const scrollerOf = () => document.querySelector('.app-body')
+  const session = {
+    get: key => { try { return sessionStorage.getItem(key) } catch { return null } },
+    set: (key, value) => { try { sessionStorage.setItem(key, value) } catch {} },
+    take: key => { try { const v = sessionStorage.getItem(key); sessionStorage.removeItem(key); return v } catch { return null } },
+  }
+
+  const saveListingPosition = () => {
+    const scroller = scrollerOf()
+    if (!isListing() || !scroller) return
+    const tracks = [...document.querySelectorAll('[data-carousel-track]')].map(t => Math.round(t.scrollLeft))
+    session.set(POSITION_PREFIX + location.pathname, JSON.stringify({ top: Math.round(scroller.scrollTop), tracks }))
+  }
+  window.addEventListener('pageswap', saveListingPosition)
+  window.addEventListener('pagehide', saveListingPosition)
+
+  // On a detail page, closing via the X or the category crumb marks a return
+  document.addEventListener('click', event => {
+    const link = event.target.closest('.project-detail .content-header a')
+    if (!link || event.defaultPrevented) return
+    session.set(RETURN_FLAG, new URL(link.href, location.href).pathname)
+  })
+
+  let restored = false
+  function restoreListingPosition() {
+    if (restored) return
+    restored = true
+    const returning = session.take(RETURN_FLAG) === location.pathname
+    const traversing = navigation?.activation?.navigationType === 'traverse' ||
+      performance.getEntriesByType('navigation')[0]?.type === 'back_forward'
+    if (!isListing() || !(returning || traversing)) return
+    let position
+    try { position = JSON.parse(session.get(POSITION_PREFIX + location.pathname)) } catch { return }
+    if (!position) return
+    document.querySelectorAll('[data-carousel-track]').forEach((track, i) => {
+      if (position.tracks?.[i]) track.scrollTo({ left: position.tracks[i], behavior: 'instant' })
+    })
+    scrollerOf()?.scrollTo({ top: position.top || 0, behavior: 'instant' })
+  }
+  // Browsers without pagereveal: restore once the DOM is ready
+  if (!('onpagereveal' in window)) document.addEventListener('DOMContentLoaded', restoreListingPosition)
 })()
