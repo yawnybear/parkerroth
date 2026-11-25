@@ -12,6 +12,7 @@
   <script src="src/javascript/page-transitions.js"></script>
   <script src="src/javascript/nav-select.js" defer></script>
   <script src="src/javascript/carousel.js" defer></script>
+  <script src="src/javascript/floating-header.js" defer></script>
 </head>
 <body>
   <div class="app-with-sidebar">
@@ -46,7 +47,7 @@
       <div class="page-content">
         <main class="page-content__main">
           <section class="carousel carousel--full-bleed" data-carousel aria-label="Documentary">
-            <header class="content-header">
+            <header class="content-header content-header--sticky" data-floating-header>
               <nav class="breadcrumbs" aria-label="Section">
                 <a class="breadcrumbs__link" href="video.html">Documentary</a>
               </nav>
@@ -97,7 +98,7 @@
             </ul>
           </section>
           <section class="carousel carousel--full-bleed" data-carousel aria-label="Narrative">
-            <header class="content-header">
+            <header class="content-header content-header--sticky" data-floating-header>
               <nav class="breadcrumbs" aria-label="Section">
                 <a class="breadcrumbs__link" href="video.html">Narrative</a>
               </nav>
@@ -121,7 +122,7 @@
             </ul>
           </section>
           <section class="carousel carousel--full-bleed" data-carousel aria-label="Experimental">
-            <header class="content-header">
+            <header class="content-header content-header--sticky" data-floating-header>
               <nav class="breadcrumbs" aria-label="Section">
                 <a class="breadcrumbs__link" href="video.html">Experimental</a>
               </nav>

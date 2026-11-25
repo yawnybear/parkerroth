@@ -11,6 +11,7 @@
   <link rel="expect" href="#page-end" blocking="render">
   <script src="src/javascript/page-transitions.js"></script>
   <script src="src/javascript/nav-select.js" defer></script>
+  <script src="src/javascript/floating-header.js" defer></script>
 </head>
 <body>
   <div class="app-with-sidebar">
@@ -44,7 +45,7 @@
     <div class="app-body">
       <div class="page-content">
         <main class="page-content__main">
-          <header class="content-header">
+          <header class="content-header content-header--sticky" data-floating-header>
             <nav class="breadcrumbs" aria-label="Section">
               <a class="breadcrumbs__link" href="photo.html">Gallery</a>
             </nav>
