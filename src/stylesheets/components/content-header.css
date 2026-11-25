@@ -13,27 +13,4 @@
     align-items: center;
     gap: var(--op-space-2x-small);
   }
-
-  /*
-    Pins the header to the top of the scroll area (.app-body) while its section scrolls.
-    - Negative margins + matching padding keep it in place at rest, while its
-      background extends through the page gutters (cards bleed into them) and a
-      little above/below the text when stuck. The vertical extension is less than the
-      gap between sections, so at rest it never covers the row above or below.
-    - z-index lifts it over carousel tracks, whose mask creates a stacking context.
-  */
-  &.content-header--sticky {
-    --_content-header-sticky-inset-block: var(--op-space-small);
-
-    position: sticky;
-    z-index: 1;
-    padding:
-      var(--_content-header-sticky-inset-block)
-      var(--pr-page-gutter)
-      var(--_content-header-sticky-inset-block)
-      calc(var(--pr-page-gutter) + var(--op-space-x-small));
-    margin: calc(var(--_content-header-sticky-inset-block) * -1) calc(var(--pr-page-gutter) * -1);
-    background-color: var(--op-color-background);
-    inset-block-start: 0;
-  }
 }
