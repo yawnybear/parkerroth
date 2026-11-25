@@ -72,33 +72,38 @@
 }
 
 /*
-  Exiting a detail page (X, Back, or the nav) is snappier: a short fast-out morph back
-  into the card, the card's contents shown right away, and a quicker crossfade.
-  The "exit-detail" type is added by page-transitions.js.
+  Closing a detail page (X, Back, or the nav) plays the opening in reverse: every timing
+  above mirrored in time (t -> 420ms - t) and the panel's easing reversed, so the panel
+  shrinks back into the card along the same path, the page fades out as it shrinks and
+  the card's contents fade in just as it lands. The "exit-detail" type is added by
+  page-transitions.js.
 */
 html:active-view-transition-type(exit-detail) {
-  /* Other groups (root, side panel) default to 250ms; the page is inert until all finish */
-  &::view-transition-group(*) {
-    animation-duration: 160ms;
-  }
-
   &::view-transition-group(project-detail) {
-    animation-duration: 240ms;
-    animation-timing-function: cubic-bezier(0.3, 0, 0, 1);
+    animation-duration: 420ms;
+    animation-timing-function: cubic-bezier(0.8, 0.2, 0.8, 0);
   }
 
+  /* Page content: opening faded it in over 120-420ms, so it fades out over 0-300ms */
   &::view-transition-old(project-detail) {
-    animation-duration: 100ms;
-  }
-
-  &::view-transition-new(project-detail) {
     animation-delay: 0ms;
-    animation-duration: 160ms;
+    animation-duration: 300ms;
+    animation-fill-mode: both;
   }
 
+  /* Card content: opening faded it out over 0-160ms, so it fades in over 260-420ms */
+  &::view-transition-new(project-detail) {
+    animation-delay: 260ms;
+    animation-duration: 160ms;
+    animation-fill-mode: both;
+  }
+
+  /* Rest of the page: opening crossfaded over 0-260ms, so this runs over 160-420ms */
   &::view-transition-old(root),
   &::view-transition-new(root) {
-    animation-duration: 160ms;
+    animation-delay: 160ms;
+    animation-duration: 260ms;
+    animation-fill-mode: both;
   }
 }
 
@@ -111,10 +116,13 @@ html:active-view-transition-type(exit-detail) {
   into place on top.
 */
 html[data-image-transition] {
-  &::view-transition-group(project-detail) {
+  &::view-transition-group(project-detail),
+  &::view-transition-group(project-image) {
     animation-duration: 320ms;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
+  /* Opening: the article fades out over 0-140ms, the image area fades in over 0-220ms */
   &::view-transition-old(project-detail) {
     animation-duration: 140ms;
   }
@@ -122,9 +130,26 @@ html[data-image-transition] {
   &::view-transition-new(project-detail) {
     animation-duration: 220ms;
   }
+}
 
+/* Closing an image is the same animation in reverse (t -> 320ms - t, easing reversed) */
+html[data-image-transition="close"] {
+  &::view-transition-group(project-detail),
   &::view-transition-group(project-image) {
-    animation-duration: 320ms;
-    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+    animation-timing-function: cubic-bezier(0.8, 0.2, 0.8, 0);
+  }
+
+  /* The image area fades out over 100-320ms */
+  &::view-transition-old(project-detail) {
+    animation-delay: 100ms;
+    animation-duration: 220ms;
+    animation-fill-mode: both;
+  }
+
+  /* The article fades back in over 180-320ms */
+  &::view-transition-new(project-detail) {
+    animation-delay: 180ms;
+    animation-duration: 140ms;
+    animation-fill-mode: both;
   }
 }

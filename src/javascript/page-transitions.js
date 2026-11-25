@@ -10,7 +10,7 @@
   const NAME = 'project-detail'
   const CARD_SELECTOR = 'a.card, a.media-grid__link'
   // Set when navigating away from a detail page, read by the next page to tag the
-  // transition as an exit (styled snappier in page-transitions.css)
+  // transition as an exit (played as the opening in reverse, see page-transitions.css)
   const EXIT_FLAG = 'pr-vt-exit-detail'
   const EXIT_TYPE = 'exit-detail'
 

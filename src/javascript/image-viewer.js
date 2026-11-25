@@ -93,7 +93,7 @@
     const from = previous === null ? containerOf(sourceFor(n)) : viewer.firstElementChild
     from.style.viewTransitionName = VT_NAME
     // Lets page-transitions.css keep the body as one container that only swaps content
-    document.documentElement.dataset.imageTransition = ''
+    document.documentElement.dataset.imageTransition = n === null ? 'close' : 'open'
     const transition = document.startViewTransition(() => {
       from.style.viewTransitionName = ''
       render(n)
