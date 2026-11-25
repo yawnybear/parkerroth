@@ -29,10 +29,14 @@
   --pr-radius-m: var(--op-radius-2x-large);
   --pr-radius-xl: 3.2rem;
 
-  /* Horizontal page margin beside the side panel (shared by page-content and full-bleed carousels) */
+  /* Horizontal page margin beside the side panel (shared by page-content, full-bleed carousels, footer) */
   --pr-page-gutter: 5.6rem;
+
+  /* Vertical page padding (page-content top/bottom; the footer mirrors it above its content) */
+  --pr-page-padding-block: var(--op-space-3x-large);
 
   @media (width <= 768px) {
     --pr-page-gutter: var(--op-space-large);
+    --pr-page-padding-block: var(--op-space-large);
   }
 }

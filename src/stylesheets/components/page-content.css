@@ -11,7 +11,7 @@
     100vh matches the height Optics gives .app-with-sidebar (the scroll container).
 */
 .page-content {
-  --_page-content-padding-block: var(--op-space-3x-large);
+  --_page-content-padding-block: var(--pr-page-padding-block);
   --_page-content-padding-inline: var(--pr-page-gutter);
 
   display: flex;
@@ -25,9 +25,5 @@
     min-inline-size: 0;
     flex-direction: column;
     gap: var(--op-space-large);
-  }
-
-  @media (width <= 768px) {
-    --_page-content-padding-block: var(--op-space-large);
   }
 }
