@@ -12,5 +12,28 @@
     previous = sessionStorage.getItem(KEY)
     sessionStorage.setItem(KEY, current)
   } catch {}
-  if (previous !== current) active.classList.add('nav-item--trim-in')
+  if (previous !== current) {
+    setTrimOrigin(active)
+    active.classList.add('nav-item--trim-in')
+    // Back to the plain (undashed) stroke once drawn
+    active.querySelector('.nav-item__trim-path')?.addEventListener('animationend', () => {
+      active.classList.remove('nav-item--trim-in')
+    }, { once: true })
+  }
+
+  // Fraction of the rounded rect's perimeter, measured clockwise from its path start
+  // (the top edge, just after the top-left corner), at which the middle of the left
+  // edge sits. The trim-on animation grows a dash outward from that point.
+  function setTrimOrigin(item) {
+    const rect = item.querySelector('.nav-item__trim-path')
+    if (!rect) return
+    try {
+      const { width: w, height: h } = rect.getBBox()
+      const r = Math.min(parseFloat(getComputedStyle(rect).rx) || 0, w / 2, h / 2)
+      const perimeter = 2 * (w - 2 * r) + 2 * (h - 2 * r) + 2 * Math.PI * r
+      if (!perimeter) return
+      const backFromEnd = (Math.PI * r) / 2 + (h - 2 * r) / 2
+      item.style.setProperty('--_nav-item-trim-origin', (1 - backFromEnd / perimeter).toFixed(4))
+    } catch {}
+  }
 })()

@@ -11,6 +11,14 @@
 .nav-item {
   --_nav-item-accent-color: var(--pr-color-blue);
 
+  /*
+    Where the trim-on starts, as a fraction of the stroke's perimeter (pathLength=1),
+    measured clockwise from the rect's path start (top edge, just after the top-left
+    corner). 0.932 = the middle of the left edge for the current 228x56 item;
+    nav-trim.js recomputes it from the item's actual size.
+  */
+  --_nav-item-trim-origin: 0.932;
+
   position: relative;
   display: flex;
   align-items: center;
@@ -23,11 +31,18 @@
   line-height: normal;
   text-decoration: none;
   text-transform: uppercase;
-  transition: var(--op-transition-input);
+  transition: var(--op-transition-input), var(--pr-hover-scale-transition);
   white-space: nowrap;
 
   &:hover {
     background-color: var(--pr-color-neutral);
+  }
+
+  /* Same grow as cards and buttons: hover, keyboard focus, and while pressed */
+  &:hover,
+  &:focus-visible,
+  &:active {
+    transform: scale(var(--pr-hover-scale));
   }
 
   &:focus-visible {
@@ -68,13 +83,26 @@
       display: block;
     }
 
-    /* Trim on (pathLength="1", so 1 = the whole perimeter), then a continuous stroke */
+    /*
+      Trim on from the middle of the inline-start edge: one dash centred there grows
+      along the top and bottom at once and meets at the inline-end edge (toward the
+      main content), then the dash pattern is dropped for a continuous stroke.
+    */
     &.nav-item--trim-in .nav-item__trim-path {
+      /* Dash of length p centred on the origin: starts at origin - p/2 */
+      stroke-dasharray: var(--_nav-item-trim-progress) calc(1 - var(--_nav-item-trim-progress));
+      stroke-dashoffset: calc((var(--_nav-item-trim-origin) - var(--_nav-item-trim-progress) / 2) * -1);
       animation: nav-item-trim-in 720ms cubic-bezier(0.65, 0, 0.35, 1) 120ms backwards;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
+    &:hover,
+    &:focus-visible,
+    &:active {
+      transform: none;
+    }
+
     &.nav-item--active.nav-item--trim-in .nav-item__trim-path {
       animation: none;
     }
@@ -97,20 +125,23 @@
   }
 }
 
+/*
+  Registered so it interpolates as a number; the dash length and offset are derived from
+  it each frame. (Animating calc(var()) in stroke-dashoffset directly doesn't interpolate.)
+  nav-trim.js removes --trim-in on animationend, leaving a plain continuous stroke.
+*/
+@property --_nav-item-trim-progress {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
 @keyframes nav-item-trim-in {
   from {
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
+    --_nav-item-trim-progress: 0;
   }
 
-  99.9% {
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-  }
-
-  /* Drop the dash pattern so the finished stroke has no seam */
   to {
-    stroke-dasharray: none;
-    stroke-dashoffset: 0;
+    --_nav-item-trim-progress: 1;
   }
 }
