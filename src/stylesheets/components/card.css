@@ -82,12 +82,12 @@
     inline-size: 57.2rem;
     max-inline-size: 100%;
     text-decoration: none;
-    transition: transform 160ms ease-out;
+    transition: var(--pr-hover-scale-transition);
 
     /* Grows slightly to signal it's clickable (large and stacked cards alike) */
     &:hover,
     &:focus-visible {
-      transform: scale(1.04);
+      transform: scale(var(--pr-hover-scale));
     }
 
     &:focus-visible {

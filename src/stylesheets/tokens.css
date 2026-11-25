@@ -29,6 +29,10 @@
   --pr-radius-m: var(--op-radius-2x-large);
   --pr-radius-xl: 3.2rem;
 
+  /* Hover/focus "grow" feedback shared by cards and buttons */
+  --pr-hover-scale: 1.04;
+  --pr-hover-scale-transition: transform 160ms ease-out;
+
   /* Horizontal page margin beside the side panel (shared by page-content, full-bleed carousels, footer) */
   --pr-page-gutter: 5.6rem;
 
