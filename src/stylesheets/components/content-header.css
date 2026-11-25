@@ -45,7 +45,7 @@
     /* Stuck state, toggled by src/javascript/floating-header.js */
     &.content-header--floating {
       background-color: var(--op-color-background);
-      box-shadow: var(--op-shadow-small);
+      box-shadow: inset var(--op-border-all) var(--pr-color-beige);
     }
 
     @media (prefers-reduced-motion: reduce) {
