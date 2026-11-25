@@ -55,9 +55,9 @@
     block-size: 98.2rem;
   }
 
-  /* Pins the nav-item hover state (accent stroke) for preview */
+  /* Pins the nav-item hover state (neutral fill) for preview */
   .component-gallery__hover-preview {
-    box-shadow: inset var(--op-border-all) var(--pr-color-blue);
+    background-color: var(--pr-color-neutral);
   }
 
   @media (width <= 768px) {

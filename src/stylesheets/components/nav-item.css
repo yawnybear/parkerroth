@@ -1,12 +1,17 @@
 /*
   Primary navigation link with a media icon.
   Figma: "nav" state=default|hover|active.
-  Hover and active both draw an inside stroke in the item's media-category accent color.
-  (Figma's hover state used a neutral fill, which is invisible on the neutral side panel.)
+  - Hover: neutral fill.
+  - Active: an inside stroke in the item's media-category accent color, drawn by
+    .nav-item__trim (an SVG rect, so the stroke can animate along its true perimeter).
+    With .nav-item--trim-in it "trims on" around the item, then resolves into a
+    continuous stroke. src/javascript/nav-trim.js adds that class only when the active
+    item changed since the previous page.
 */
 .nav-item {
   --_nav-item-accent-color: var(--pr-color-blue);
 
+  position: relative;
   display: flex;
   align-items: center;
   padding: var(--op-space-x-small) var(--op-space-small);
@@ -21,6 +26,10 @@
   transition: var(--op-transition-input);
   white-space: nowrap;
 
+  &:hover {
+    background-color: var(--pr-color-neutral);
+  }
+
   &:focus-visible {
     outline: var(--op-border-width-large) solid var(--_nav-item-accent-color);
     outline-offset: 0;
@@ -30,10 +39,43 @@
     min-inline-size: 0;
   }
 
-  /* Inset shadow = Figma's inside stroke, so the stroke doesn't change the item's size */
-  &:hover,
+  /* Stroke overlay; geometry is set in CSS so it always matches the item's box */
+  .nav-item__trim {
+    position: absolute;
+    display: none;
+    overflow: visible;
+    block-size: 100%;
+    inline-size: 100%;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .nav-item__trim-path {
+    x: 0.5px;
+    y: 0.5px;
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+    fill: none;
+    rx: calc(var(--pr-radius-m) - 0.5px);
+    stroke: var(--_nav-item-accent-color);
+    stroke-width: var(--op-border-width);
+  }
+
   &.nav-item--active {
-    box-shadow: inset var(--op-border-all) var(--_nav-item-accent-color);
+    .nav-item__trim {
+      display: block;
+    }
+
+    /* Trim on (pathLength="1", so 1 = the whole perimeter), then a continuous stroke */
+    &.nav-item--trim-in .nav-item__trim-path {
+      animation: nav-item-trim-in 720ms cubic-bezier(0.65, 0, 0.35, 1) 120ms backwards;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &.nav-item--active.nav-item--trim-in .nav-item__trim-path {
+      animation: none;
+    }
   }
 
   &.nav-item--design {
@@ -50,5 +92,23 @@
 
   &.nav-item--story {
     --_nav-item-accent-color: var(--pr-color-green);
+  }
+}
+
+@keyframes nav-item-trim-in {
+  from {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+
+  99.9% {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+
+  /* Drop the dash pattern so the finished stroke has no seam */
+  to {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
   }
 }
