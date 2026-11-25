@@ -20,9 +20,23 @@
     object-fit: cover;
   }
 
+  /* Image containers share the cards' hover grow */
   .media-grid__link {
     display: block;
     border-radius: var(--pr-radius-m);
+    transition: var(--pr-hover-scale-transition);
+
+    &:hover,
+    &:focus-visible {
+      transform: scale(var(--pr-hover-scale));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &:hover,
+      &:focus-visible {
+        transform: none;
+      }
+    }
 
     &:focus-visible {
       outline: var(--op-border-width-large) solid var(--pr-color-red);

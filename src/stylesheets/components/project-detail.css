@@ -16,6 +16,40 @@
     border-radius: var(--pr-radius-xl);
     background-color: var(--pr-color-neutral);
     gap: var(--op-space-large);
+
+    &.project-detail__body--viewing .project-detail__content {
+      display: none;
+    }
+  }
+
+  .project-detail__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--op-space-large);
+  }
+
+  /* Image containers open in the viewer; they share the cards' hover grow */
+  .project-detail__hero-link {
+    display: block;
+    border-radius: var(--pr-radius-m);
+    transition: var(--pr-hover-scale-transition);
+
+    &:hover,
+    &:focus-visible {
+      transform: scale(var(--pr-hover-scale));
+    }
+
+    &:focus-visible {
+      outline: var(--op-border-width-large) solid var(--pr-color-blue);
+      outline-offset: var(--op-space-3x-small);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &:hover,
+      &:focus-visible {
+        transform: none;
+      }
+    }
   }
 
   .project-detail__hero {
@@ -48,6 +82,28 @@
     max-block-size: 100%;
     max-inline-size: 40%;
     object-fit: contain;
+  }
+
+  /*
+    Opened image (src/javascript/image-viewer.js): replaces the body's content and keeps
+    the source container's aspect ratio, fitted to the column and 70% of the viewport.
+  */
+  .project-detail__viewer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .project-detail__viewer-image {
+    --_project-detail-viewer-ratio: 1;
+
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--pr-radius-m);
+    aspect-ratio: var(--_project-detail-viewer-ratio);
+    background-color: var(--pr-color-beige);
+    inline-size: min(100%, calc(70vh * var(--_project-detail-viewer-ratio)));
   }
 
   .project-detail__copy {
