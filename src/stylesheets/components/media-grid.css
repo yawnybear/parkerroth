@@ -44,8 +44,14 @@
     }
   }
 
+  /* Photo page grid: tiles match the cards' larger corner radius */
   &.media-grid--gallery {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    .media-grid__item,
+    .media-grid__link {
+      border-radius: var(--pr-radius-xl);
+    }
   }
 
   &.media-grid--widescreen {
