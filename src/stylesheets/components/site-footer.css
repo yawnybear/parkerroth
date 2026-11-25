@@ -6,6 +6,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  padding-block-start: var(--op-space-large);
+  border-block-start: var(--op-border-width-large) solid var(--pr-color-neutral); /* matches the side-panel divider */
   gap: var(--op-space-large);
 
   .site-footer__credits {
