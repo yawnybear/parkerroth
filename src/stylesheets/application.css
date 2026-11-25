@@ -24,3 +24,6 @@
 @import url('components/carousel.css');
 @import url('components/media-grid.css');
 @import url('components/project-detail.css');
+
+/* Card ⇄ detail page transitions */
+@import url('page-transitions.css');

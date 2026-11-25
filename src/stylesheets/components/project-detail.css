@@ -8,6 +8,8 @@
   gap: var(--op-space-large);
 
   .project-detail__body {
+    view-transition-name: project-detail; /* card ⇄ detail morph target (page-transitions.css) */
+
     display: flex;
     flex-direction: column;
     padding: var(--op-space-3x-large);

@@ -1,0 +1,41 @@
+/*
+  Cross-document view transitions (Chrome/Edge 126+, Safari 18.2+; other browsers
+  navigate normally). Opening a card morphs it into the detail page's body panel;
+  closing reverses it. Element naming is done by src/javascript/page-transitions.js.
+*/
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
+
+/* The side panel is shared by every page, so it stays put instead of crossfading */
+.side-panel {
+  view-transition-name: side-panel;
+}
+
+/* The card ⇄ detail-body morph ("project-detail" is set on .project-detail__body) */
+::view-transition-group(project-detail) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Fade the card's contents out quickly and the page's in, so text isn't seen stretching */
+::view-transition-old(project-detail) {
+  animation-duration: 160ms;
+}
+
+::view-transition-new(project-detail) {
+  animation-delay: 120ms;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 260ms;
+}
