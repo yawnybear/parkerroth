@@ -6548,12 +6548,11 @@ body {
     gap: var(--op-space-large);
   }
 
-  /* Banner: scales with the viewport's height so it never fills a large monitor */
   .project-detail__hero {
     display: block;
     border-radius: var(--pr-radius-m);
+    aspect-ratio: 1082 / 400;
     background-color: var(--pr-color-beige);
-    block-size: 30vh;
     inline-size: 100%;
     object-fit: cover;
   }
