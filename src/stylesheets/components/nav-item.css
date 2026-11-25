@@ -2,7 +2,7 @@
   Primary navigation link with a media icon.
   Figma: "nav" state=default|hover|active.
   - Hover: neutral fill.
-  - Active: an inside stroke in the item's media-category accent color, drawn by
+  - Active: keeps the neutral fill, plus an inside stroke in the item's media-category accent color, drawn by
     .nav-item__trim (an SVG rect, so the stroke can animate along its true perimeter).
     With .nav-item--trim-in it "trims on" around the item, then resolves into a
     continuous stroke. src/javascript/nav-trim.js adds that class only when the active
@@ -62,6 +62,8 @@
   }
 
   &.nav-item--active {
+    background-color: var(--pr-color-neutral);
+
     .nav-item__trim {
       display: block;
     }
