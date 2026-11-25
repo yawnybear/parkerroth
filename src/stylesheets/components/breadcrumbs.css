@@ -4,8 +4,8 @@
   Adds .breadcrumbs__separator (Optics has no separator element).
 */
 .breadcrumbs {
-  --_op-breadcrumbs-font-size-small: var(--op-font-medium);
-  --_op-breadcrumbs-font-size-large: var(--op-font-medium);
+  --_op-breadcrumbs-font-size-small: var(--op-font-small);
+  --_op-breadcrumbs-font-size-large: var(--op-font-small);
 
   align-items: center;
   gap: var(--op-space-2x-small);
@@ -13,15 +13,20 @@
   text-transform: uppercase;
   white-space: nowrap;
 
+  /* Unselected crumbs are de-emphasised; the current crumb (__text) keeps full weight */
   .breadcrumbs__link {
-    color: var(--pr-color-text-alt);
-    font-weight: var(--op-font-weight-medium);
+    color: var(--pr-color-text-muted);
+    font-weight: var(--op-font-weight-normal);
+
+    &:hover {
+      color: var(--pr-color-text-alt);
+    }
   }
 
   .breadcrumbs__separator {
-    color: var(--pr-color-text-alt);
+    color: var(--pr-color-text-muted);
     font-size: var(--__op-breadcrumbs-font-size);
-    font-weight: var(--op-font-weight-medium);
+    font-weight: var(--op-font-weight-normal);
   }
 
   .breadcrumbs__text {

@@ -11,6 +11,11 @@
   /* Color — Figma: text, text-alt, neutral, beige */
   --pr-color-text: #171717;
   --pr-color-text-alt: #333;
+
+  /* Not in Figma: de-emphasised text (e.g. unselected breadcrumbs). text-alt mixed 30%
+     toward the beige page (~#6f6e69): 4.77:1 on beige (passes WCAG AA). Only 4.33:1 on
+     neutral, so don't use it for small text on neutral surfaces. */
+  --pr-color-text-muted: color-mix(in srgb, var(--pr-color-text-alt), var(--pr-color-beige) 30%);
   --pr-color-neutral: #f0ece0;
   --pr-color-beige: #fcf7e8;
 
