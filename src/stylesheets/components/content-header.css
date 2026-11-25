@@ -13,4 +13,43 @@
     align-items: center;
     gap: var(--op-space-2x-small);
   }
+
+  /*
+    Sticks to the top of the scroll area (.app-body) once it would scroll out of view.
+    Padding is cancelled by negative margins, so the bar's extra room never moves the
+    layout or the header's own content; it only matters once --floating paints it.
+    Inline: the base 8px start inset becomes 20px of padding (bar overhangs 12px), and
+    the end gets 12px of padding (bar overhangs 12px), so the bar is centred on the column.
+  */
+  &.content-header--sticky {
+    --_content-header-float-gap: var(--op-space-small);
+    --_content-header-float-padding-block: var(--op-space-small);
+    --_content-header-float-overhang: var(--op-space-small);
+
+    position: sticky;
+    z-index: 1;
+    padding:
+      var(--_content-header-float-padding-block)
+      var(--_content-header-float-overhang)
+      var(--_content-header-float-padding-block)
+      calc(var(--op-space-x-small) + var(--_content-header-float-overhang));
+    border-radius: var(--pr-radius-m);
+    margin:
+      calc(var(--_content-header-float-padding-block) * -1)
+      calc(var(--_content-header-float-overhang) * -1);
+    inset-block-start: var(--_content-header-float-gap);
+    transition:
+      background-color 160ms ease-out,
+      box-shadow 160ms ease-out;
+
+    /* Stuck state, toggled by src/javascript/floating-header.js */
+    &.content-header--floating {
+      background-color: var(--op-color-background);
+      box-shadow: var(--op-shadow-small);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
 }
