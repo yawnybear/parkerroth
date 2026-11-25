@@ -23,7 +23,7 @@
     - z-index lifts it over carousel tracks, whose mask creates a stacking context.
   */
   &.content-header--sticky {
-    --_content-header-sticky-inset-block: var(--op-space-medium);
+    --_content-header-sticky-inset-block: var(--op-space-small);
 
     position: sticky;
     z-index: 1;

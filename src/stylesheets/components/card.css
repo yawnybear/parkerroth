@@ -113,6 +113,22 @@
       display: inline-flex;
       flex-direction: column;
       gap: var(--op-space-small);
+      transition: transform 160ms ease-out;
+
+      /* Grows slightly to signal it's clickable */
+      &:hover,
+      &:focus-visible {
+        transform: scale(1.04);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+
+        &:hover,
+        &:focus-visible {
+          transform: none;
+        }
+      }
       inline-size: auto;
 
       .card__details {

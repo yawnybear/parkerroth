@@ -6,6 +6,9 @@
 .carousel {
   --_carousel-bleed: 0rem;
 
+  /* Vertical room so cards scaled on hover aren't clipped (overflow-x also clips y) */
+  --_carousel-hover-room: var(--op-space-small);
+
   display: flex;
   min-inline-size: 0;
   flex-direction: column;
@@ -14,8 +17,8 @@
   .carousel__track {
     display: flex;
     align-items: flex-start;
-    padding: 0 var(--_carousel-bleed);
-    margin: 0 calc(var(--_carousel-bleed) * -1);
+    padding: var(--_carousel-hover-room) var(--_carousel-bleed);
+    margin: calc(var(--_carousel-hover-room) * -1) calc(var(--_carousel-bleed) * -1);
     gap: var(--op-space-medium);
     list-style: none;
     overflow-x: auto;
