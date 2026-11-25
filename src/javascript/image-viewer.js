@@ -89,6 +89,8 @@
     // Opening: thumbnail -> viewer. Closing: viewer -> the thumbnail it came from.
     const from = previous === null ? containerOf(sourceFor(n)) : viewer.firstElementChild
     from.style.viewTransitionName = VT_NAME
+    // Lets page-transitions.css keep the body as one container that only swaps content
+    document.documentElement.dataset.imageTransition = ''
     const transition = document.startViewTransition(() => {
       from.style.viewTransitionName = ''
       render(n)
@@ -97,6 +99,7 @@
     })
     transition.finished.finally(() => {
       body.querySelectorAll('[style*="view-transition-name"]').forEach(el => { el.style.viewTransitionName = '' })
+      delete document.documentElement.dataset.imageTransition
     })
   }
 

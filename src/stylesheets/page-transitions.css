@@ -18,6 +18,18 @@
   view-transition-name: side-panel;
 }
 
+/*
+  The detail page's (floating) breadcrumb bar gets its own group, kept above the
+  morphing body panel, so the panel never passes over it mid-transition.
+*/
+.project-detail .content-header {
+  view-transition-name: project-detail-header;
+}
+
+::view-transition-group(project-detail-header) {
+  z-index: 1;
+}
+
 /* The card ⇄ detail-body morph ("project-detail" is set on .project-detail__body) */
 ::view-transition-group(project-detail) {
   animation-duration: 420ms;
@@ -68,5 +80,44 @@ html:active-view-transition-type(exit-detail) {
   &::view-transition-old(root),
   &::view-transition-new(root) {
     animation-duration: 160ms;
+  }
+}
+
+/*
+  Opening / closing an image inside a detail page (image-viewer.js sets
+  html[data-image-transition] for the duration). The body panel stays one container:
+  its snapshots keep their natural size, anchored to the top and clipped by the panel's
+  rounded shape, so only the panel's outline animates while the article fades out and
+  the image fades in. The clicked image ("project-image") morphs into place on top.
+*/
+html[data-image-transition] {
+  /* The morphing box paints the panel itself, so it stays solid while content swaps */
+  &::view-transition-group(project-detail) {
+    overflow: clip;
+    border-radius: var(--pr-radius-xl);
+    background-color: var(--pr-color-neutral);
+    animation-duration: 320ms;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  &::view-transition-old(project-detail),
+  &::view-transition-new(project-detail) {
+    block-size: 100%;
+    inline-size: 100%;
+    object-fit: none;
+    object-position: top;
+  }
+
+  &::view-transition-old(project-detail) {
+    animation-duration: 140ms;
+  }
+
+  &::view-transition-new(project-detail) {
+    animation-duration: 220ms;
+  }
+
+  &::view-transition-group(project-image) {
+    animation-duration: 320ms;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 }
