@@ -7,11 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="src/stylesheets/application.css">
+  <link rel="stylesheet" href="dist/application.css">
   <link rel="expect" href="#page-end" blocking="render">
   <script src="src/javascript/page-transitions.js"></script>
   <script src="src/javascript/nav-select.js" defer></script>
   <script src="src/javascript/floating-header.js" defer></script>
+  <script type="speculationrules">{"prerender":[{"urls":["photo.html"],"eagerness":"eager"},{"where":{"selector_matches":"a.card, a.media-grid__link[href$=\".html\"], a.nav-item"},"eagerness":"moderate"}]}</script>
 </head>
 <body>
   <div class="app-with-sidebar">

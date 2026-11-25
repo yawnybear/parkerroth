@@ -2,7 +2,9 @@
   "name": "parkerroth",
   "version": "1.0.0",
   "description": "Parker Roth site components (BEM + Optics)",
-  "scripts": {},
+  "scripts": {
+    "build:css": "node scripts/build-css.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yawnybear/parkerroth.git"
