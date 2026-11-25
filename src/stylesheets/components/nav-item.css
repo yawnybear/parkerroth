@@ -2,11 +2,10 @@
   Primary navigation link with a media icon.
   Figma: "nav" state=default|hover|active.
   One continuous motion from hover to selection:
-  - Hover / keyboard focus (unselected items): grows, keeps the beige fill, dashed accent
-    outline.
+  - Hover / keyboard focus (unselected items): grows, with a neutral fill.
   - Selecting (pressed, or .nav-item--selecting set by src/javascript/nav-select.js until
-    the page changes): the dashes first grow until they close into a solid line, then
-    the item scales back to its original size.
+    the page changes): the solid accent outline fades in first, then the item scales back
+    to its original size and the fill turns beige.
   - Selected (.nav-item--active): that same end state; it doesn't react to hover.
   The outline is an SVG rect (.nav-item__outline-path) sized in CSS to the item's box.
 */
@@ -14,7 +13,7 @@
   --_nav-item-accent-color: var(--pr-color-blue);
   /* Hover in/out: every property on one timing (matches the shared hover scale) */
   --_nav-item-motion: 160ms ease-out;
-  /* Selecting: fill the line, then settle back to the original size */
+  /* Selecting: show the line, then settle back to the original size */
   --_nav-item-select-fill-duration: 140ms;
   --_nav-item-select-fill: var(--_nav-item-select-fill-duration) ease-out;
   --_nav-item-select-settle: 160ms ease-out;
@@ -55,7 +54,7 @@
     pointer-events: none;
   }
 
-  /* Dashed (4/4) when hovered; the gaps close to 0 for the solid selected line */
+  /* Solid accent line, shown only while selecting / selected */
   .nav-item__outline-path {
     x: 0.5px;
     y: 0.5px;
@@ -65,27 +64,20 @@
     opacity: 0;
     rx: calc(var(--pr-radius-m) - 0.5px);
     stroke: var(--_nav-item-accent-color);
-    stroke-dasharray: 4px 4px;
     stroke-width: var(--op-border-width);
-    transition:
-      opacity var(--_nav-item-motion),
-      stroke-dasharray var(--_nav-item-motion);
+    transition: opacity var(--_nav-item-motion);
   }
 
-  /* Hover / focus on unselected items not being selected: grow, beige fill, dashes */
+  /* Hover / focus on unselected items not being selected: grow, neutral fill */
   &:not(.nav-item--active, .nav-item--selecting, :active):is(:hover, :focus-visible) {
-    background-color: var(--op-color-background);
+    background-color: var(--pr-color-neutral);
     transform: scale(var(--pr-hover-scale));
-
-    .nav-item__outline-path {
-      opacity: 1;
-    }
   }
 
   /*
-    Selecting or selected: the dashes close into a solid line first (while still at the
-    hovered size), then the item scales back to its original size and the fill turns
-    beige. These transitions apply only on the way into this state.
+    Selecting or selected: the solid line appears first (while still at the hovered
+    size), then the item scales back to its original size and the fill turns beige.
+    These transitions apply only on the way into this state.
   */
   &:active,
   &.nav-item--selecting,
@@ -98,10 +90,7 @@
 
     .nav-item__outline-path {
       opacity: 1;
-      stroke-dasharray: 4px 0;
-      transition:
-        opacity var(--_nav-item-select-fill),
-        stroke-dasharray var(--_nav-item-select-fill);
+      transition: opacity var(--_nav-item-select-fill);
     }
   }
 

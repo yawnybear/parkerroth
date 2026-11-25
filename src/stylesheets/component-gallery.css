@@ -51,14 +51,10 @@
     inline-size: 20.2rem;
   }
 
-  /* Pins the nav-item hover state (grow, beige fill, dashed outline) for preview */
+  /* Pins the nav-item hover state (grow, neutral fill) for preview */
   .component-gallery__hover-preview {
-    background-color: var(--op-color-background);
+    background-color: var(--pr-color-neutral);
     transform: scale(var(--pr-hover-scale));
-
-    .nav-item__outline-path {
-      opacity: 1;
-    }
   }
 
   .component-gallery__panel-frame {

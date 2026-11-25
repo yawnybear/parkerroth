@@ -1,6 +1,6 @@
 // Makes selecting a side-panel nav item one continuous motion (see nav-item.css):
-// on click the item keeps the "selecting" state (outline closes into a solid line, then
-// it settles back to its original size with a beige fill) instead of snapping back to
+// on click the item keeps the "selecting" state (the accent outline appears, then it
+// settles back to its original size with a beige fill) instead of snapping back to
 // its hover state on mouseup, and navigation waits for that motion to finish so the
 // page change starts from exactly what the next page shows.
 ;(() => {
