@@ -9,6 +9,21 @@
 ;(() => {
   const NAME = 'project-detail'
   const CARD_SELECTOR = 'a.card, a.media-grid__link'
+  // Set when navigating away from a detail page, read by the next page to tag the
+  // transition as an exit (styled snappier in page-transitions.css)
+  const EXIT_FLAG = 'pr-vt-exit-detail'
+  const EXIT_TYPE = 'exit-detail'
+
+  const storage = {
+    set: () => { try { sessionStorage.setItem(EXIT_FLAG, '1') } catch {} },
+    take: () => {
+      try {
+        const value = sessionStorage.getItem(EXIT_FLAG)
+        sessionStorage.removeItem(EXIT_FLAG)
+        return value === '1'
+      } catch { return false }
+    },
+  }
 
   const samePage = (a, b) => {
     try { return new URL(a, location.href).pathname === new URL(b, location.href).pathname } catch { return false }
@@ -33,6 +48,7 @@
     clearNames()
     const to = event.activation?.entry?.url
     if (!event.viewTransition || !to) return
+    if (document.querySelector('.project-detail__body')) storage.set()
     const card = cardFor(to)
     if (card) name(card)
   })
@@ -40,8 +56,10 @@
   // Arriving on this page: name the card we came back from
   window.addEventListener('pagereveal', event => {
     clearNames()
+    const exiting = storage.take()
     const from = navigation?.activation?.from?.url
     if (!event.viewTransition || !from) return
+    if (exiting) event.viewTransition.types?.add(EXIT_TYPE)
     const card = cardFor(from)
     if (!card) return
     name(card)

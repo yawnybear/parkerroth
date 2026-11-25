@@ -39,3 +39,34 @@
 ::view-transition-new(root) {
   animation-duration: 260ms;
 }
+
+/*
+  Exiting a detail page (X, Back, or the nav) is snappier: a short fast-out morph back
+  into the card, the card's contents shown right away, and a quicker crossfade.
+  The "exit-detail" type is added by page-transitions.js.
+*/
+html:active-view-transition-type(exit-detail) {
+  /* Other groups (root, side panel) default to 250ms; the page is inert until all finish */
+  &::view-transition-group(*) {
+    animation-duration: 160ms;
+  }
+
+  &::view-transition-group(project-detail) {
+    animation-duration: 240ms;
+    animation-timing-function: cubic-bezier(0.3, 0, 0, 1);
+  }
+
+  &::view-transition-old(project-detail) {
+    animation-duration: 100ms;
+  }
+
+  &::view-transition-new(project-detail) {
+    animation-delay: 0ms;
+    animation-duration: 160ms;
+  }
+
+  &::view-transition-old(root),
+  &::view-transition-new(root) {
+    animation-duration: 160ms;
+  }
+}
