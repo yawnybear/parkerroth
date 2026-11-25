@@ -51,6 +51,16 @@
     inline-size: 20.2rem;
   }
 
+  /* Pins the nav-item hover state (grow, neutral fill, dashed outline) for preview */
+  .component-gallery__hover-preview {
+    background-color: var(--pr-color-neutral);
+    transform: scale(var(--pr-hover-scale));
+
+    .nav-item__outline-path--hover {
+      opacity: 1;
+    }
+  }
+
   .component-gallery__panel-frame {
     block-size: 98.2rem;
   }
