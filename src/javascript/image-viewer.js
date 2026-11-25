@@ -58,7 +58,7 @@
     image.style.setProperty('--_project-detail-viewer-ratio', ratio.toFixed(4))
     image.setAttribute('role', 'img')
     image.setAttribute('aria-label', `${projectTitle}, image ${n}`)
-    // Keep any real content (e.g. a brand logo) from the source container
+    // Keep any real content (e.g. an image) from the source container
     image.append(...[...source.children].map(child => child.cloneNode(true)))
     viewer.append(image)
     body.append(viewer)

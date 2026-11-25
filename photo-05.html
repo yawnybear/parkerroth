@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Origin: Creators of the Carolinas — Parker Douglas Roth</title>
+  <title>Project — Parker Douglas Roth</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
@@ -12,8 +12,7 @@
   <script src="src/javascript/page-transitions.js"></script>
   <script src="src/javascript/nav-select.js" defer></script>
   <script src="src/javascript/floating-header.js" defer></script>
-  <script src="src/javascript/image-viewer.js" defer></script>
-  <script type="speculationrules">{"prerender":[{"urls":["video.html"],"eagerness":"eager"},{"where":{"selector_matches":"a.card, a.media-grid__link[href$=\".html\"], a.nav-item"},"eagerness":"moderate"}]}</script>
+  <script type="speculationrules">{"prerender":[{"urls":["photo.html"],"eagerness":"eager"},{"where":{"selector_matches":"a.card, a.media-grid__link[href$=\".html\"], a.nav-item"},"eagerness":"moderate"}]}</script>
 </head>
 <body>
   <div class="app-with-sidebar">
@@ -32,12 +31,12 @@
           <span class="media-icon media-icon--design" aria-hidden="true"><img class="media-icon__image" src="assets/icons/design.svg" width="33.0337" height="26.4886" alt=""></span>
           <span class="nav-item__label">Design</span>
         </a>
-        <a class="nav-item nav-item--video nav-item--active" href="video.html" aria-current="page">
+        <a class="nav-item nav-item--video" href="video.html">
           <svg class="nav-item__outline" aria-hidden="true" focusable="false"><rect class="nav-item__outline-path"/></svg>
           <span class="media-icon media-icon--video" aria-hidden="true"><img class="media-icon__image" src="assets/icons/video.svg" width="38.8075" height="25.9164" alt=""></span>
           <span class="nav-item__label">Video</span>
         </a>
-        <a class="nav-item nav-item--photo" href="photo.html">
+        <a class="nav-item nav-item--photo nav-item--active" href="photo.html" aria-current="page">
           <svg class="nav-item__outline" aria-hidden="true" focusable="false"><rect class="nav-item__outline-path"/></svg>
           <span class="media-icon media-icon--photo" aria-hidden="true"><img class="media-icon__image" src="assets/icons/photo.svg" width="39.9305" height="26.3003" alt=""></span>
           <span class="nav-item__label">Photo</span>
@@ -50,32 +49,21 @@
           <article class="project-detail">
             <header class="content-header content-header--sticky" data-floating-header>
               <nav class="breadcrumbs" aria-label="Breadcrumb">
-                <a class="breadcrumbs__link" href="video.html">Documentary</a>
+                <a class="breadcrumbs__link" href="photo.html">Gallery</a>
                 <span class="breadcrumbs__separator" aria-hidden="true">/</span>
-                <span class="breadcrumbs__text" aria-current="page">Origin: Creators of the Carolinas</span>
+                <span class="breadcrumbs__text" aria-current="page">Project</span>
               </nav>
               <div class="content-header__aside">
-                <a class="btn" href="video.html" aria-label="Close">X</a>
+                <a class="btn" href="photo.html" aria-label="Close">X</a>
               </div>
             </header>
             <div class="project-detail__body">
               <div class="project-detail__content">
                 <div class="project-detail__hero project-detail__hero--widescreen"></div>
                 <div class="project-detail__copy">
-                  <h1 class="project-detail__title">Origin: Creators of the Carolinas</h1>
+                  <h1 class="project-detail__title">Project</h1>
                   <p class="project-detail__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </div>
-                <ul class="media-grid media-grid--inset media-grid--widescreen project-detail__gallery">
-                  <li><a class="media-grid__link" href="?image=1" data-image-index="1" aria-label="Image 1"><span class="media-grid__item"></span></a></li>
-                  <li><a class="media-grid__link" href="?image=2" data-image-index="2" aria-label="Image 2"><span class="media-grid__item"></span></a></li>
-                  <li><a class="media-grid__link" href="?image=3" data-image-index="3" aria-label="Image 3"><span class="media-grid__item"></span></a></li>
-                  <li><a class="media-grid__link" href="?image=4" data-image-index="4" aria-label="Image 4"><span class="media-grid__item"></span></a></li>
-                  <li><a class="media-grid__link" href="?image=5" data-image-index="5" aria-label="Image 5"><span class="media-grid__item"></span></a></li>
-                  <li><a class="media-grid__link" href="?image=6" data-image-index="6" aria-label="Image 6"><span class="media-grid__item"></span></a></li>
-                  <li><a class="media-grid__link" href="?image=7" data-image-index="7" aria-label="Image 7"><span class="media-grid__item"></span></a></li>
-                  <li><a class="media-grid__link" href="?image=8" data-image-index="8" aria-label="Image 8"><span class="media-grid__item"></span></a></li>
-                  <li><a class="media-grid__link" href="?image=9" data-image-index="9" aria-label="Image 9"><span class="media-grid__item"></span></a></li>
-                </ul>
               </div>
             </div>
           </article>

@@ -12,20 +12,6 @@
     block-size: 20rem;
     inline-size: 20rem;
     object-fit: cover;
-
-    /* Brand mark centered on the placeholder surface */
-    &.card__media--logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--op-space-large);
-    }
-  }
-
-  .card__logo {
-    display: block;
-    block-size: auto;
-    max-inline-size: 100%;
   }
 
   .card__details {

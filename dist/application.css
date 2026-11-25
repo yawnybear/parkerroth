@@ -5711,20 +5711,6 @@ body {
     block-size: 20rem;
     inline-size: 20rem;
     object-fit: cover;
-
-    /* Brand mark centered on the placeholder surface */
-    &.card__media--logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--op-space-large);
-    }
-  }
-
-  .card__logo {
-    display: block;
-    block-size: auto;
-    max-inline-size: 100%;
   }
 
   .card__details {
@@ -6574,25 +6560,6 @@ body {
     &.project-detail__hero--widescreen {
       aspect-ratio: 16 / 9;
     }
-
-    /* Brand mark centered on the hero surface */
-    &.project-detail__hero--logo {
-      display: flex;
-      overflow: hidden;
-      align-items: center;
-      justify-content: center;
-      padding: var(--op-space-3x-large);
-      min-block-size: 0; /* keep the aspect ratio; don't grow to fit the logo */
-    }
-  }
-
-  .project-detail__logo {
-    display: block;
-    min-block-size: 0;
-    block-size: auto; /* width comes from the img's width attribute (2x the card size) */
-    max-block-size: 100%;
-    max-inline-size: 40%;
-    object-fit: contain;
   }
 
   /*
