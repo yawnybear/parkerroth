@@ -20,7 +20,10 @@
     object-fit: cover;
   }
 
-  /* Image containers grow on hover, more subtly than cards and buttons */
+  /*
+    Image containers grow on hover: subtly inside a project (third level), like the
+    cards on the photo grid (second level, set by .media-grid--gallery).
+  */
   .media-grid__link {
     display: block;
     border-radius: var(--pr-radius-m);
@@ -28,7 +31,7 @@
 
     &:hover,
     &:focus-visible {
-      transform: scale(var(--pr-hover-scale-subtle));
+      transform: scale(var(--_media-grid-hover-scale, var(--pr-hover-scale-subtle)));
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -44,8 +47,10 @@
     }
   }
 
-  /* Photo page grid: tiles match the cards' larger corner radius */
+  /* Photo page grid: tiles match the cards' corner radius and hover grow */
   &.media-grid--gallery {
+    --_media-grid-hover-scale: var(--pr-hover-scale);
+
     grid-template-columns: repeat(4, minmax(0, 1fr));
 
     .media-grid__item,
