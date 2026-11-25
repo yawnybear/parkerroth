@@ -18,17 +18,6 @@
   view-transition-name: side-panel;
 }
 
-/*
-  Each primary nav item morphs on its own, so the one losing (or gaining) the selected
-  scale animates smoothly instead of crossfading inside the panel snapshot.
-*/
-.side-panel__footer {
-  .nav-item--design { view-transition-name: nav-item-design; }
-  .nav-item--video { view-transition-name: nav-item-video; }
-  .nav-item--photo { view-transition-name: nav-item-photo; }
-  .nav-item--story { view-transition-name: nav-item-story; }
-}
-
 /* The card ⇄ detail-body morph ("project-detail" is set on .project-detail__body) */
 ::view-transition-group(project-detail) {
   animation-duration: 420ms;
