@@ -4,6 +4,8 @@
 // the transition. Naming on demand avoids duplicate names on pages where many links
 // share a destination (e.g. the photo grid), which would cancel the transition.
 //
+// Also scrolls a listing back to the top before opening a page from it (see below).
+//
 // Loaded in <head> without defer so the listeners exist before the first render;
 // <link rel="expect" ... blocking="render"> keeps that render waiting for the DOM.
 ;(() => {
@@ -64,5 +66,28 @@
     if (!card) return
     name(card)
     event.viewTransition.finished.finally(clearNames)
+  })
+
+  // Opening a page from a listing while scrolled down: glide back to the top first, so
+  // the floating header settles back into place before the page changes (the card then
+  // morphs from where it ends up). Detail-page images are handled in place by
+  // image-viewer.js, which prevents the default before this runs.
+  const SCROLL_WAIT_MAX = 700
+  document.addEventListener('click', event => {
+    const link = event.target.closest(CARD_SELECTOR)
+    if (!link || event.defaultPrevented) return
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    if ((link.target && link.target !== '_self') || samePage(link.href, location.href)) return
+
+    const scroller = link.closest('.app-body')
+    if (!scroller || scroller.scrollTop <= 1) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    event.preventDefault()
+    let done = false
+    const go = () => { if (!done) { done = true; location.href = link.href } }
+    scroller.addEventListener('scrollend', go, { once: true })
+    setTimeout(go, SCROLL_WAIT_MAX)
+    scroller.scrollTo({ top: 0, behavior: 'smooth' })
   })
 })()
